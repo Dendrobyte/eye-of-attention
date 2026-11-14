@@ -5,7 +5,9 @@ var ITEM_POSITIONS = [] # NOTE: i don't think we need dicts, just remove when un
 var PLAYER_TRANSFORMS = [] # { "position": ..., "rotation": ... }
 
 var CHARACTER_MODEL = preload("res://assets/char_base.glb")
+var CHARACTER_SCRIPT = preload("res://scripts/npc_behavior.gd")
 var ITEM_SCENE = preload("res://assets/items.glb")
+var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,17 +37,19 @@ func _ready() -> void:
 	# NOTE: Always assuming more items than positions
 	for idx in range(len(ITEM_POSITIONS)):
 		var item_pos = ITEM_POSITIONS[idx]
-		var item_node = item_nodes[idx]
+		var item_node: Node = item_nodes[idx]
 		item_node.position = item_pos
+		item_node.set_script(ITEM_SCRIPT)
 		item_parent.add_child(item_node)
 
 	used_item_names.clear() # idk, memory
 
 	# Spawn player models at the player positions
 	for p_transform in PLAYER_TRANSFORMS:
-		var new_char = CHARACTER_MODEL.instantiate()
+		var new_char: Node = CHARACTER_MODEL.instantiate()
 		new_char.position = p_transform.position
 		new_char.rotation = p_transform.rotation
+		new_char.set_script(CHARACTER_SCRIPT)
 		char_parent.add_child(new_char)
 
 func extract_items(scene_packed):
