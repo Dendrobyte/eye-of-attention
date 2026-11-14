@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bv7pxogm15l82"]
 
-[ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://level_manager.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://scripts/level_manager.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dbp1rfb4tv8ok" path="res://assets/prototype_map.glb" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://mjyhsmmc6p7x" path="res://scripts/control.gd" id="4_1bvp3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
 size = Vector3(1, 1.0537109, 1)
@@ -35,6 +36,18 @@ script = ExtResource("2_0xm2m")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=961118087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41322184, 0)
+
+[node name="Control" type="Control" parent="Character" unique_id=836450976]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("4_1bvp3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Character" unique_id=429228823]
 transform = Transform3D(1, 0, 0, 0, 2.5690346, 0, 0, 0, 1, 0, -0.7206001, 0.076082945)

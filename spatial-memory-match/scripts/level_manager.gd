@@ -12,8 +12,8 @@ var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var map = get_child(0) # always keep map as 0th child I guess
-	var item_parent = get_child(1)
-	var char_parent = get_child(2)
+	var item_parent = $ItemParent
+	var char_parent = $CharacterParent
 
 	# Log all positions
 	for child in map.get_children():
