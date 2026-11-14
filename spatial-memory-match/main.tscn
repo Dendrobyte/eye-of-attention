@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bv7pxogm15l82"]
 
+[ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://level_manager.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dbp1rfb4tv8ok" path="res://assets/prototype_map.glb" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
 size = Vector3(1, 1.0537109, 1)
@@ -10,10 +12,18 @@ size = Vector3(1, 2.6698608, 1.0474243)
 
 [node name="Main" type="Node3D" unique_id=1752176662]
 
-[node name="prototype_map" parent="." unique_id=565293169 instance=ExtResource("1_ig7tw")]
+[node name="LevelManager" type="Node" parent="." unique_id=381122697]
+script = ExtResource("1_h2yge")
+
+[node name="prototype_map" parent="LevelManager" unique_id=565293169 instance=ExtResource("1_ig7tw")]
+
+[node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
+
+[node name="CharacterParent" type="Node3D" parent="LevelManager" unique_id=459603274]
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1739137916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.207295, 14.966264)
+script = ExtResource("2_0xm2m")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=961118087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41322184, 0)
