@@ -2,10 +2,10 @@ extends Node
 
 var level_name = "prototype_map"
 var ITEM_POSITIONS = [] # NOTE: i don't think we need dicts, just remove when unused
-var PLAYER_POSITIONS = []
+var PLAYER_TRANSFORMS = [] # { "position": ..., "rotation": ... }
 
 var CHARACTER_MODEL = preload("res://assets/char_base.glb")
-var ITEM_SCENE = preload("res://assets/items/items.glb")
+var ITEM_SCENE = preload("res://assets/items.glb")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,13 +20,13 @@ func _ready() -> void:
 		if child_name.contains("PLAYER_POS"):
 			# only trim if the dict ends up being necessary
 			# var num: int = child_name.trim_prefix("PLAYER_POS_").to_int() # prefer hard error here
-			PLAYER_POSITIONS.append(child.position)
+			PLAYER_TRANSFORMS.append({"position": child.position, "rotation": child.rotation})
 			child.queue_free()
 		if child_name.contains("ITEM_POS"):
 			# var num: int = child_name.trim_prefix("PLAYER_POS_").to_int() # prefer hard error here
 			ITEM_POSITIONS.append(child.position)
 			child.queue_free()
-	print("Loaded item and player positions\n Player Count: ", len(PLAYER_POSITIONS), "\nItem Count: ", len(ITEM_POSITIONS))
+	print("Loaded item and player positions\n Player Count: ", len(PLAYER_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
 
 	# Get the items and then scatter them at those positions
 	var used_item_names = [] # TODO: Will use this for each character below
@@ -42,9 +42,10 @@ func _ready() -> void:
 	used_item_names.clear() # idk, memory
 
 	# Spawn player models at the player positions
-	for p_pos in PLAYER_POSITIONS:
+	for p_transform in PLAYER_TRANSFORMS:
 		var new_char = CHARACTER_MODEL.instantiate()
-		new_char.position = p_pos
+		new_char.position = p_transform.position
+		new_char.rotation = p_transform.rotation
 		char_parent.add_child(new_char)
 
 func extract_items(scene_packed):

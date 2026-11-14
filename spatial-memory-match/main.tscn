@@ -21,6 +21,14 @@ script = ExtResource("1_h2yge")
 
 [node name="CharacterParent" type="Node3D" parent="LevelManager" unique_id=459603274]
 
+[node name="Lights" type="Node3D" parent="LevelManager" unique_id=519051258]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LevelManager/Lights" unique_id=126248230]
+transform = Transform3D(0.82990915, 0.4477779, -0.3327849, 0, 0.5964971, 0.8026152, 0.5578986, -0.6660977, 0.49503842, -21.485598, 22.060188, 32.82515)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelManager/Lights" unique_id=1714262996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.788761, 6.6555643, -31.139204)
+
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1739137916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.207295, 14.966264)
 script = ExtResource("2_0xm2m")
