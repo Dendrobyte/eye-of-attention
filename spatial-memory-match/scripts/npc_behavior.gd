@@ -1,44 +1,35 @@
 extends Node3D
 class_name NPCBehavior
 
-@export var mask_on = true:
-	set(value):
-		mask_on = value
-		toggle_mask(value)
-
-@export var show_want = false:
-	set(value):
-		show_want = value
-		toggle_want(value)
-
 # This is set in the level manager
 var wanted_item_str: String
 var want_timer: Timer
 
 var satisfied = false
 
-# Helper functions for state
-func toggle_mask(value):
-	if value:
-		$Mask.show()
+# True, take it off. False, put it on.
+func toggle_mask(on_or_off):
+	if on_or_off:
+		$AnimationPlayer.play("mask_off")
+		await $AnimationPlayer.animation_finished
 	else:
-		$Mask.hide()
+		$AnimationPlayer.play("mask_on")
 
-func toggle_want(value):
-	if value:
+func display_want():
+	if !satisfied && not want_timer: # use timer nil state to see if showing item already
+		await toggle_mask(true)
 		$WantedItem.show()
 		want_timer = Timer.new()
 		want_timer.wait_time = 3.0
 		want_timer.one_shot = true
 		want_timer.timeout.connect(func():
 			$WantedItem.hide()
-			toggle_mask(true)
 			want_timer = null
+			toggle_mask(false)
 		)
 
 		add_child(want_timer)
 		want_timer.start()
-
 	else:
 		$WantedItem.hide()
 
@@ -58,11 +49,15 @@ func _ready():
 func interact():
 	if satisfied:
 		print("Already gave character what they wanted")
-		return
-	if GlobalState.has_item(wanted_item_str):
-		satisfied = true
-		print("Character satisfied!")
+		return ""
 	else:
-		if not want_timer: # use timer nil state to see if showing item already
-			toggle_mask(false)
-			toggle_want(true)
+		# may show flicker of item?
+		return wanted_item_str
+# TODO: Show success and error visuals
+func maybe_satisfy(held_item_name: String):
+	if wanted_item_str == held_item_name:
+		satisfied = true
+		print("NPC satisfied!")
+	else:
+		display_want()
+	return satisfied

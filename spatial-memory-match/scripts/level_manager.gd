@@ -4,10 +4,13 @@ var level_name = "prototype_map"
 var ITEM_POSITIONS = [] # NOTE: i don't think we need dicts, just remove when unused
 var NPC_TRANSFORMS = [] # { "position": ..., "rotation": ... }
 
-var NPC_MODEL = preload("res://assets/char_base.glb")
+var NPC_MODEL = preload("res://entity_scenes/char_base_scene.tscn")
 var NPC_SCRIPT = preload("res://scripts/npc_behavior.gd")
 var ITEM_SCENE = preload("res://assets/items.glb")
 var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
+
+# Debug Options
+@export var no_randomize: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +35,8 @@ func _ready() -> void:
 	var used_item_names = []
 	var item_nodes = extract_items(ITEM_SCENE)
 
+	if !no_randomize:
+		ITEM_POSITIONS.shuffle()
 	# NOTE: Always assuming more items than positions
 	for idx in range(len(ITEM_POSITIONS)):
 		var item_pos = ITEM_POSITIONS[idx]
@@ -42,7 +47,9 @@ func _ready() -> void:
 		used_item_names.append(item_node.name)
 		GlobalState.add_item_node_to_map(item_node)
 
-	used_item_names.shuffle()
+	if !no_randomize:
+		used_item_names.shuffle()
+
 	item_nodes.clear()
 
 	# Spawn npc models at the npc positions

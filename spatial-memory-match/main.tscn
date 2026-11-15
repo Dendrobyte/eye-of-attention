@@ -15,6 +15,7 @@ size = Vector3(1, 2.6698608, 1.0474243)
 
 [node name="LevelManager" type="Node" parent="." unique_id=381122697]
 script = ExtResource("1_h2yge")
+no_randomize = true
 
 [node name="prototype_map" parent="LevelManager" unique_id=565293169 instance=ExtResource("1_ig7tw")]
 
@@ -36,6 +37,9 @@ script = ExtResource("2_0xm2m")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=961118087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41322184, 0)
+
+[node name="HeldItem" type="Node3D" parent="Character/Camera" unique_id=926990059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049438953, -0.7243767)
 
 [node name="Control" type="Control" parent="Character" unique_id=836450976]
 layout_mode = 3
