@@ -15,6 +15,8 @@ class_name NPCBehavior
 var wanted_item_str: String
 var want_timer: Timer
 
+var satisfied = false
+
 # Helper functions for state
 func toggle_mask(value):
 	if value:
@@ -31,6 +33,7 @@ func toggle_want(value):
 		want_timer.timeout.connect(func():
 			$WantedItem.hide()
 			toggle_mask(true)
+			want_timer = null
 		)
 
 		add_child(want_timer)
@@ -52,7 +55,14 @@ func _ready():
 	add_child(wanted_item)
 	$WantedItem.hide()
 
-# start timer etc
 func interact():
-	toggle_mask(false)
-	toggle_want(true)
+	if satisfied:
+		print("Already gave character what they wanted")
+		return
+	if GlobalState.has_item(wanted_item_str):
+		satisfied = true
+		print("Character satisfied!")
+	else:
+		if not want_timer: # use timer nil state to see if showing item already
+			toggle_mask(false)
+			toggle_want(true)

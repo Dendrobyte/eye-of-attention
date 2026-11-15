@@ -40,7 +40,7 @@ func _ready() -> void:
 		item_node.set_script(ITEM_SCRIPT)
 		item_parent.add_child(item_node)
 		used_item_names.append(item_node.name)
-		GlobalState.item_node_map[item_node.name] = item_node
+		GlobalState.add_item_node_to_map(item_node)
 
 	used_item_names.shuffle()
 	item_nodes.clear()
