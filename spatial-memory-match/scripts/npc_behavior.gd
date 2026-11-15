@@ -11,6 +11,9 @@ class_name NPCBehavior
 		show_want = value
 		toggle_want(value)
 
+# This is set in the level manager
+var wanted_item_str: String
+
 # Helper functions for state
 func toggle_mask(value):
 	if value:
@@ -20,9 +23,22 @@ func toggle_mask(value):
 
 func toggle_want(value):
 	if value:
-		$Want.show()
+		$WantedItem.show()
 	else:
-		$Want.hide()
+		$WantedItem.hide()
+
+func _ready():
+	# Get the wanted item and spawn it above head, then hide it
+	var want_pos = $Want.position
+	var want_rot = $Want.rotation
+	$Want.queue_free()
+
+	var wanted_item = GlobalState.item_node_map[wanted_item_str].duplicate()
+	wanted_item.position = want_pos
+	wanted_item.rotation = want_rot
+	wanted_item.name = "WantedItem"
+	add_child(wanted_item)
+	$WantedItem.hide()
 
 # start timer etc
 func interact():

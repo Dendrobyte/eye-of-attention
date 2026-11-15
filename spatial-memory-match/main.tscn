@@ -20,7 +20,7 @@ script = ExtResource("1_h2yge")
 
 [node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
 
-[node name="CharacterParent" type="Node3D" parent="LevelManager" unique_id=459603274]
+[node name="NPCParent" type="Node3D" parent="LevelManager" unique_id=459603274]
 
 [node name="Lights" type="Node3D" parent="LevelManager" unique_id=519051258]
 
