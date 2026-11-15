@@ -20,15 +20,13 @@ func _ready() -> void:
 		var child_name = child.name
 		# log positions and free those nodes
 		if child_name.contains("PLAYER_POS"):
-			# only trim if the dict ends up being necessary
 			# var num: int = child_name.trim_prefix("PLAYER_POS_").to_int() # prefer hard error here
 			NPC_TRANSFORMS.append({"position": child.position, "rotation": child.rotation})
 			child.queue_free()
 		if child_name.contains("ITEM_POS"):
-			# var num: int = child_name.trim_prefix("PLAYER_POS_").to_int() # prefer hard error here
 			ITEM_POSITIONS.append(child.position)
 			child.queue_free()
-	print("Loaded item and player positions\n Player Count: ", len(NPC_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
+	print("Loaded item and NPC positions\nNPC Count: ", len(NPC_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
 
 	# Get the items and then scatter them at those positions
 	var used_item_names = []
@@ -47,14 +45,14 @@ func _ready() -> void:
 	used_item_names.shuffle()
 	item_nodes.clear()
 
-	# Spawn player models at the player positions
+	# Spawn npc models at the npc positions
 	for p_transform in NPC_TRANSFORMS:
-		var new_char: Node = NPC_MODEL.instantiate()
-		new_char.position = p_transform.position
-		new_char.rotation = p_transform.rotation
-		new_char.set_script(NPC_SCRIPT)
-		new_char.wanted_item_str = used_item_names.pop_back()
-		npc_parent.add_child(new_char)
+		var new_npc: Node = NPC_MODEL.instantiate()
+		new_npc.position = p_transform.position
+		new_npc.rotation = p_transform.rotation
+		new_npc.set_script(NPC_SCRIPT)
+		new_npc.wanted_item_str = used_item_names.pop_back()
+		npc_parent.add_child(new_npc)
 
 func extract_items(scene_packed):
 	var result_item_nodes = []

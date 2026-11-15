@@ -13,6 +13,7 @@ class_name NPCBehavior
 
 # This is set in the level manager
 var wanted_item_str: String
+var want_timer: Timer
 
 # Helper functions for state
 func toggle_mask(value):
@@ -24,18 +25,29 @@ func toggle_mask(value):
 func toggle_want(value):
 	if value:
 		$WantedItem.show()
+		want_timer = Timer.new()
+		want_timer.wait_time = 3.0
+		want_timer.one_shot = true
+		want_timer.timeout.connect(func():
+			$WantedItem.hide()
+			toggle_mask(true)
+		)
+
+		add_child(want_timer)
+		want_timer.start()
+
 	else:
 		$WantedItem.hide()
 
 func _ready():
 	# Get the wanted item and spawn it above head, then hide it
 	var want_pos = $Want.position
-	var want_rot = $Want.rotation
 	$Want.queue_free()
 
 	var wanted_item = GlobalState.item_node_map[wanted_item_str].duplicate()
+	wanted_item.get_node("StaticBody3D").queue_free()
 	wanted_item.position = want_pos
-	wanted_item.rotation = want_rot
+	wanted_item.scale = 0.8 * wanted_item.scale
 	wanted_item.name = "WantedItem"
 	add_child(wanted_item)
 	$WantedItem.hide()
@@ -44,4 +56,3 @@ func _ready():
 func interact():
 	toggle_mask(false)
 	toggle_want(true)
-	# TODO: Timer to hide
