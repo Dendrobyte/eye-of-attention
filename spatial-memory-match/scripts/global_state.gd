@@ -14,6 +14,8 @@ func add_item_node_to_map(item_node):
 var inventory = [] # all strings right now
 
 # Only need string for now, will show similar to want later
+# refactor into a held item, but keep this for the hard mode stretch goal
+# where you need to ask everyone, then you pick up everything, then you go back
 func add_item_to_inventory(item_node):
 	inventory.append(item_node.name)
 	print("Full inventory: ", inventory)
