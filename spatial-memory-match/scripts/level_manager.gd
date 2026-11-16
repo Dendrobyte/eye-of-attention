@@ -1,4 +1,5 @@
 extends Node
+class_name LevelManager
 
 var level_name = "prototype_map"
 var ITEM_POSITIONS = [] # NOTE: i don't think we need dicts, just remove when unused
@@ -11,6 +12,7 @@ var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 
 # Debug Options
 @export var no_randomize: bool = false
+@export var npc_count = 2 # todo: wire up to menu, like this for debug
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +39,7 @@ func _ready() -> void:
 
 	if !no_randomize:
 		ITEM_POSITIONS.shuffle()
+
 	# NOTE: Always assuming more items than positions
 	for idx in range(len(ITEM_POSITIONS)):
 		var item_pos = ITEM_POSITIONS[idx]
@@ -52,14 +55,21 @@ func _ready() -> void:
 
 	item_nodes.clear()
 
-	# Spawn npc models at the npc positions
-	for p_transform in NPC_TRANSFORMS:
+	if !no_randomize:
+		NPC_TRANSFORMS.shuffle()
+
+	# Spawn npc models at positions
+	for p_count in range(npc_count):
 		var new_npc: Node = NPC_MODEL.instantiate()
+		var p_transform = NPC_TRANSFORMS[p_count]
 		new_npc.position = p_transform.position
 		new_npc.rotation = p_transform.rotation
 		new_npc.set_script(NPC_SCRIPT)
 		new_npc.wanted_item_str = used_item_names.pop_back()
 		npc_parent.add_child(new_npc)
+	
+	GlobalState.level_manager = self
+	GlobalState.set_total_npcs(npc_count) # menu -> level manager -> state
 
 func extract_items(scene_packed):
 	var result_item_nodes = []

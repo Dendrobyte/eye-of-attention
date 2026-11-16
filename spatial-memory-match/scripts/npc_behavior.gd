@@ -53,11 +53,12 @@ func interact():
 	else:
 		# may show flicker of item?
 		return wanted_item_str
+
 # TODO: Show success and error visuals
 func maybe_satisfy(held_item_name: String):
-	if wanted_item_str == held_item_name:
+	if !satisfied && wanted_item_str == held_item_name:
 		satisfied = true
-		print("NPC satisfied!")
+		GlobalState.incr_satisfy_npc()
 	else:
 		display_want()
 	return satisfied
