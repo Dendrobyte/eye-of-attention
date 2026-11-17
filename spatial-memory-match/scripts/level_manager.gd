@@ -1,7 +1,6 @@
 extends Node
 class_name LevelManager
 
-var level_name = "prototype_map"
 var ITEM_POSITIONS = [] # NOTE: i don't think we need dicts, just remove when unused
 var NPC_TRANSFORMS = [] # { "position": ..., "rotation": ... }
 
@@ -11,12 +10,16 @@ var ITEM_SCENE = preload("res://assets/items.glb")
 var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 
 # Debug Options
+@export_enum("prototype_map", "first_floor") var level_scene_name: String
 @export var no_randomize: bool = false
 @export var npc_count = 2 # todo: wire up to menu, like this for debug
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var map = get_child(0) # always keep map as 0th child I guess
+	# Load the map from selected, must be present in `/assets/levels`
+	var map_scene: PackedScene = load("res://assets/levels/" + level_scene_name + ".glb")
+	var map = map_scene.instantiate()
+	add_child(map)
 	var item_parent = $ItemParent
 	var npc_parent = $NPCParent
 

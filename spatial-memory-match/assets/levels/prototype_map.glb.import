@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dbp1rfb4tv8ok"
-path="res://.godot/imported/prototype_map.glb-c32d488c3cc2aaadb05dea96cbf27630.scn"
+path="res://.godot/imported/prototype_map.glb-2a01a37f19db67af68c29040c4ff1e2b.scn"
 
 [deps]
 
-source_file="res://assets/prototype_map.glb"
-dest_files=["res://.godot/imported/prototype_map.glb-c32d488c3cc2aaadb05dea96cbf27630.scn"]
+source_file="res://assets/levels/prototype_map.glb"
+dest_files=["res://.godot/imported/prototype_map.glb-2a01a37f19db67af68c29040c4ff1e2b.scn"]
 
 [params]
 
