@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bv7pxogm15l82"]
 
 [ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://scripts/level_manager.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dbp1rfb4tv8ok" path="res://assets/levels/prototype_map.glb" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://mjyhsmmc6p7x" path="res://scripts/control.gd" id="4_1bvp3"]
 
@@ -16,6 +17,8 @@ size = Vector3(1, 2.6698608, 1.0474243)
 script = ExtResource("1_h2yge")
 level_scene_name = "prototype_map"
 no_randomize = true
+
+[node name="prototype_map" parent="LevelManager" unique_id=7209299 instance=ExtResource("1_ig7tw")]
 
 [node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
 
