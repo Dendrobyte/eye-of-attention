@@ -20,7 +20,7 @@ func display_want():
 		await toggle_mask(true)
 		$WantedItem.show()
 		want_timer = Timer.new()
-		want_timer.wait_time = 3.0
+		want_timer.wait_time = 2.0
 		want_timer.one_shot = true
 		want_timer.timeout.connect(func():
 			$WantedItem.hide()

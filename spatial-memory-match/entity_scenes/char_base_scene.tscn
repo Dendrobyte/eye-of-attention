@@ -73,6 +73,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_02bcf"]
 resource_name = "mask_off"
+length = 0.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,9 +81,9 @@ tracks/0/path = NodePath("Mask:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-7.72594e-06, -0.0005, 0, 0.0005, 0, -0.26011378, -0.45, 0.012241021, 0, 0),
-"times": PackedFloat32Array(0.0009999999, 0.75)
+"times": PackedFloat32Array(0.0009999999, 0.5)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -91,9 +92,9 @@ tracks/1/path = NodePath("Mask:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(2.4678926, -0.0005, 0, 0.0005, 0, 2.4292936, -0.55, 0.004971981, 0, 0),
-"times": PackedFloat32Array(0.0009999999, 0.75)
+"times": PackedFloat32Array(0.0009999999, 0.5)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -102,9 +103,9 @@ tracks/2/path = NodePath("Mask:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.20849395, -0.0005, 0, 0.0005, 0, -0.20849395, -0.12483334, 0, 0, 0),
-"times": PackedFloat32Array(0.0009999999, 0.75)
+"times": PackedFloat32Array(0.0009999999, 0.5)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -113,13 +114,14 @@ tracks/3/path = NodePath("Mask:rotation:z")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0, 0.71130925, -0.6166667, -0.06616032, 0, 0),
-"times": PackedFloat32Array(0.0009999999, 0.75)
+"times": PackedFloat32Array(0.0009999999, 0.5)
 }
 
 [sub_resource type="Animation" id="Animation_c57g7"]
 resource_name = "mask_on"
+length = 0.36666667
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -129,7 +131,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.26, -0.25, 0, 0.25, 0, -7.72594e-06, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7398442)
+"times": PackedFloat32Array(0, 0.33333334)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -140,7 +142,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(2.429, -0.25, 0, 0.25, 0, 2.4678926, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7398442)
+"times": PackedFloat32Array(0, 0.33333334)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -151,7 +153,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.208, -0.25, 0, 0.25, 0, -0.20849395, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7398442)
+"times": PackedFloat32Array(0, 0.33333334)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -162,7 +164,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7398442)
+"times": PackedFloat32Array(0, 0.33333334)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -173,7 +175,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7398442)
+"times": PackedFloat32Array(0, 0.33333334)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -184,7 +186,7 @@ tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0.7120943, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7398442)
+"times": PackedFloat32Array(0, 0.33333334)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6d5g6"]
@@ -195,6 +197,7 @@ _data = {
 }
 
 [node name="char_base" unique_id=165551240 instance=ExtResource("1_02bcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09515369, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0" unique_id=1901851464]
 libraries/ = SubResource("AnimationLibrary_6d5g6")

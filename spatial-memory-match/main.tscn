@@ -13,9 +13,10 @@ size = Vector3(1, 2.6698608, 1.0474243)
 
 [node name="Main" type="Node3D" unique_id=1752176662]
 
-[node name="LevelManager" type="Node" parent="." unique_id=381122697]
+[node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
 level_scene_name = "first_floor"
+npc_count = 2
 
 [node name="prototype_map" parent="LevelManager" unique_id=7209299 instance=ExtResource("1_ig7tw")]
 

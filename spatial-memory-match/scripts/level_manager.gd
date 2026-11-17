@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name LevelManager
 
 var ITEM_POSITIONS = [] # NOTE: i don't think we need dicts, just remove when unused
@@ -12,6 +12,8 @@ var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 # Debug Options
 @export_enum("prototype_map", "first_floor") var level_scene_name: String
 @export var no_randomize: bool = false
+
+# These options mimic what can be configured in menu / game settings
 @export var npc_count = 8 # todo: wire up to menu, like this for debug
 
 # Called when the node enters the scene tree for the first time.
@@ -30,13 +32,25 @@ func _ready() -> void:
 		# log positions and free those nodes
 		if child_name.contains("PLAYER_POS"):
 			# var num: int = child_name.trim_prefix("PLAYER_POS_").to_int() # prefer hard error here
-			NPC_TRANSFORMS.append({"position": child.position, "rotation": child.rotation})
+			var y_offset = 0.02 # slight offset from Blender, beats snap-down
+			var new_npc_position = snap_down_pos(child.position, y_offset)
+			NPC_TRANSFORMS.append({"position": new_npc_position, "rotation": child.rotation})
 			child.queue_free()
 		if child_name.contains("ITEM_POS"):
 			ITEM_POSITIONS.append(child.position)
 			child.queue_free()
-		if child_name.contains("PLAYER_START_POS"):
+		if child_name == "PLAYER_START_POS":
 			GlobalState.set_start_pos(child.position)
+			child.queue_free()
+		if child_name == "START":
+			var new_area_3d: Area3D = Area3D.new()
+			var area_collider = child.get_child(0).duplicate() # StaticBody3D -> CollisionShape3D
+			# new_area_3d.set_script("res://scripts/start_area_behavior.gd")
+			new_area_3d.add_child(area_collider)
+			new_area_3d.body_entered.connect(start_area_entered)
+			add_child(new_area_3d)
+			child.queue_free()
+
 	print("Loaded item and NPC positions\nNPC Count: ", len(NPC_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
 
 	# Get the items and then scatter them at those positions
@@ -47,8 +61,6 @@ func _ready() -> void:
 		ITEM_POSITIONS.shuffle()
 
 	# NOTE: Always assuming more items than positions
-	print("item pos: ", ITEM_POSITIONS)
-	print("item nodes: ", item_nodes)
 	for idx in range(len(ITEM_POSITIONS)):
 		var item_pos = ITEM_POSITIONS[idx]
 		var item_node: Node = item_nodes[idx]
@@ -79,6 +91,12 @@ func _ready() -> void:
 	GlobalState.level_manager = self
 	GlobalState.set_total_npcs(npc_count) # menu -> level manager -> state
 
+
+# Keeping it here feels fine... but for now
+func _process(delta: float):
+	if GlobalState.STOPWATCH_STARTED:
+		GlobalState.TIME_ELAPSED += delta
+
 func extract_items(scene_packed):
 	var result_item_nodes = []
 	var scene: Node = scene_packed.instantiate()
@@ -88,3 +106,23 @@ func extract_items(scene_packed):
 
 	scene.queue_free()
 	return result_item_nodes
+
+var ray_offset = {
+	x = 0,
+	y = 0,
+	z = 0,
+}
+func snap_down_pos(node_position, y_offset):
+	var space_state = get_world_3d().direct_space_state
+	var ray_start = Vector3(node_position.x + ray_offset.x, node_position.y + 5, node_position.z + ray_offset.z) # Start above the player?
+	var ray_end = Vector3(node_position.x + ray_offset.x, node_position.y - 10, node_position.z + ray_offset.z) # I don't think we need to go too far down?
+	var query = PhysicsRayQueryParameters3D.create(ray_start, ray_end)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	if result:
+		node_position.y = result.position.y + y_offset
+	return node_position
+
+func start_area_entered(_body):
+	if !GlobalState.STOPWATCH_STARTED:
+		GlobalState.start_game_stopwatch()

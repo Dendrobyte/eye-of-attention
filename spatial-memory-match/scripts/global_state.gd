@@ -29,7 +29,25 @@ func incr_satisfy_npc():
 	if SATISFIED_NPCS == TOTAL_NPCS:
 		end_game()
 
+# Game points, timer, etc.
+# These could be handled in LevelManager, which is acting as LevelState (aka whole game lol)
+var STOPWATCH_STARTED = false
+var TIME_ELAPSED = 0.0
+
+func start_game_stopwatch():
+	STOPWATCH_STARTED = true
+	print("stopwatch started")
+
+# They won't be able to walk back through a level, so not bothering with the area that triggers start
+func end_game_stopwatch():
+	STOPWATCH_STARTED = true
+	print("stopwatch stopped")
+
+func show_time_elapsed():
+	return str(TIME_ELAPSED).pad_decimals(2)
+
 func end_game():
+	end_game_stopwatch()
 	print("All NPCs satisfied! Game complete!")
 
 # Will mimic the Escape Simulator inventory system, works for me. UI and all.
