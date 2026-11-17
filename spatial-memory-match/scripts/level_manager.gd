@@ -44,6 +44,8 @@ func _ready() -> void:
 		ITEM_POSITIONS.shuffle()
 
 	# NOTE: Always assuming more items than positions
+	print("item pos: ", ITEM_POSITIONS)
+	print("item nodes: ", item_nodes)
 	for idx in range(len(ITEM_POSITIONS)):
 		var item_pos = ITEM_POSITIONS[idx]
 		var item_node: Node = item_nodes[idx]

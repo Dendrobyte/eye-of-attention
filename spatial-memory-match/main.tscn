@@ -15,8 +15,7 @@ size = Vector3(1, 2.6698608, 1.0474243)
 
 [node name="LevelManager" type="Node" parent="." unique_id=381122697]
 script = ExtResource("1_h2yge")
-level_scene_name = "prototype_map"
-no_randomize = true
+level_scene_name = "first_floor"
 
 [node name="prototype_map" parent="LevelManager" unique_id=7209299 instance=ExtResource("1_ig7tw")]
 
