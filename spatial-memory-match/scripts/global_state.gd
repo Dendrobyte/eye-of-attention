@@ -32,6 +32,7 @@ func incr_satisfy_npc():
 # Game points, timer, etc.
 # These could be handled in LevelManager, which is acting as LevelState (aka whole game lol)
 var STOPWATCH_STARTED = false
+var STOPWATCH_RUNNING = false
 var TIME_ELAPSED = 0.0
 
 func start_game_stopwatch():
@@ -41,7 +42,15 @@ func start_game_stopwatch():
 # They won't be able to walk back through a level, so not bothering with the area that triggers start
 func end_game_stopwatch():
 	STOPWATCH_STARTED = true
+	STOPWATCH_RUNNING = true
 	print("stopwatch stopped")
+
+func pause_game_stopwatch():
+	STOPWATCH_RUNNING = false # maybe not? depends on if it feels like pausing helps
+
+func resume_game_stopwatch():
+	if STOPWATCH_STARTED:
+		STOPWATCH_RUNNING = true
 
 func show_time_elapsed():
 	return str(TIME_ELAPSED).pad_decimals(2)

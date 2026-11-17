@@ -94,7 +94,7 @@ func _ready() -> void:
 
 # Keeping it here feels fine... but for now
 func _process(delta: float):
-	if GlobalState.STOPWATCH_STARTED:
+	if GlobalState.STOPWATCH_STARTED && GlobalState.STOPWATCH_RUNNING:
 		GlobalState.TIME_ELAPSED += delta
 
 func extract_items(scene_packed):

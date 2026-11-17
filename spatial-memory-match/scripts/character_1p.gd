@@ -43,8 +43,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-# true is captured
-var mouse_mode_flag = false
 var camera_pitch = 0.0
 func _unhandled_input(event):
 	# Camera movement
@@ -71,12 +69,6 @@ func _unhandled_input(event):
 	# Player always in scene so this is fine?
 	if event.is_action_pressed("EXIT"):
 		get_tree().quit()
-	if event.is_action_pressed("ESCAPE"):
-		if mouse_mode_flag:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		mouse_mode_flag = !mouse_mode_flag
 
 func check_raycast_collision(exceptions = []):
 	var origin = camera.project_ray_origin($Control.cursor_pos)

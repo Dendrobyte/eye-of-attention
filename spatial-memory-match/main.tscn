@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://scripts/level_manager.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dbp1rfb4tv8ok" path="res://assets/levels/prototype_map.glb" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://8m1ib2vweuxn" path="res://menus/pause_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://mjyhsmmc6p7x" path="res://scripts/control.gd" id="4_1bvp3"]
 
@@ -13,9 +14,12 @@ size = Vector3(1, 2.6698608, 1.0474243)
 
 [node name="Main" type="Node3D" unique_id=1752176662]
 
+[node name="PauseMenu" parent="." unique_id=1740259336 instance=ExtResource("1_lquwl")]
+
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
-level_scene_name = "first_floor"
+level_scene_name = "prototype_map"
+no_randomize = true
 npc_count = 2
 
 [node name="prototype_map" parent="LevelManager" unique_id=7209299 instance=ExtResource("1_ig7tw")]
@@ -52,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("4_1bvp3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Character" unique_id=429228823]
