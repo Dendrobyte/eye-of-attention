@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://i2qrbjr2gdx0"]
 
+[ext_resource type="Script" uid="uid://b8erbtsg68cjk" path="res://menus/start_menu.gd" id="1_1t8nw"]
 [ext_resource type="Texture2D" uid="uid://bl1r3armv0i2g" path="res://Screenshot 2026-11-17 at 7.22.42 AM.png" id="1_3kg5v"]
 
 [sub_resource type="Theme" id="Theme_hixdw"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1t8nw")
 
 [node name="BG picture" type="TextureRect" parent="." unique_id=1812035796]
 layout_mode = 0
@@ -62,3 +64,9 @@ text = "Credits"
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
 text = "Quit Game"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit Game" to="." method="_on_quit_pressed"]
