@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Character1P
 
 
 @export var SPEED: float = 10.0
@@ -16,6 +17,9 @@ var camera: Camera3D
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera = $Camera
+	GlobalState.character = self
+	if GlobalState.START_POSITION != null:
+		position = GlobalState.START_POSITION
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

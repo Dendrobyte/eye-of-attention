@@ -12,10 +12,11 @@ var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 # Debug Options
 @export_enum("prototype_map", "first_floor") var level_scene_name: String
 @export var no_randomize: bool = false
-@export var npc_count = 2 # todo: wire up to menu, like this for debug
+@export var npc_count = 8 # todo: wire up to menu, like this for debug
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_child(0).queue_free() # free the prototype map
 	# Load the map from selected, must be present in `/assets/levels`
 	var map_scene: PackedScene = load("res://assets/levels/" + level_scene_name + ".glb")
 	var map = map_scene.instantiate()
@@ -34,6 +35,8 @@ func _ready() -> void:
 		if child_name.contains("ITEM_POS"):
 			ITEM_POSITIONS.append(child.position)
 			child.queue_free()
+		if child_name.contains("PLAYER_START_POS"):
+			GlobalState.set_start_pos(child.position)
 	print("Loaded item and NPC positions\nNPC Count: ", len(NPC_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
 
 	# Get the items and then scatter them at those positions

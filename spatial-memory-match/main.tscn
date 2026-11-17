@@ -24,6 +24,7 @@ level_scene_name = "first_floor"
 [node name="NPCParent" type="Node3D" parent="LevelManager" unique_id=459603274]
 
 [node name="Lights" type="Node3D" parent="LevelManager" unique_id=519051258]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="LevelManager/Lights" unique_id=126248230]
 transform = Transform3D(0.82990915, 0.4477779, -0.3327849, 0, 0.5964971, 0.8026152, 0.5578986, -0.6660977, 0.49503842, -21.485598, 22.060188, 32.82515)

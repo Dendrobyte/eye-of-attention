@@ -2,6 +2,7 @@ extends Node
 
 ## Self Assigned References ##
 var level_manager: LevelManager = null
+var character: Character1P = null
 
 # Contains references to the nodes from the name, to be temporarily duplicated for the npc want
 var item_node_map = {} # { "name": node }
@@ -9,6 +10,11 @@ var item_node_map = {} # { "name": node }
 # This holds on to the item regardless of parent, used for NPC showing desire
 func add_item_node_to_map(item_node):
 	item_node_map[item_node.name] = item_node
+
+var START_POSITION: Vector3
+
+func set_start_pos(pos):
+	START_POSITION = pos
 
 var TOTAL_NPCS = -1 # -1 to represent default/error state
 var SATISFIED_NPCS = 0
