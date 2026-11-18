@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://do17ldha454tw"]
+
+[ext_resource type="Script" uid="uid://cb1h2xho8g5vo" path="res://menus/end_game_menu.gd" id="1_ahgcq"]
+
+[node name="EndGameMenu" type="Control" unique_id=1740259336]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahgcq")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1097503710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1574397421]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="CenterContainer/VBoxContainer" unique_id=5744014]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 52
+text = "GAME COMPLETE"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TimeReport" type="RichTextLabel" parent="CenterContainer/VBoxContainer" unique_id=191096342]
+layout_mode = 2
+text = "Time: "
+fit_content = true
+
+[node name="Retry" type="Button" parent="CenterContainer/VBoxContainer" unique_id=135480145]
+layout_mode = 2
+text = "Retry"
+
+[node name="Quit Game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1567920335]
+layout_mode = 2
+text = "Quit Game"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed"]

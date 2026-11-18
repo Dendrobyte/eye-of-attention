@@ -26,6 +26,7 @@ func _ready() -> void:
 		npc_count = GlobalState.TOTAL_NPCS
 	if GlobalState.SELECTED_LEVEL != "":
 		level_scene_name = GlobalState.SELECTED_LEVEL
+	GlobalState.IS_GAME_RUNNING = true
 
 	get_child(0).queue_free() # free the prototype map
 

@@ -8,6 +8,8 @@ var LEVEL_LIST = [] # dynamically loaded in enter tree
 # TODO: Load settings in the level, e.g. early traversal to get player position count, etc.
 # Things like this could be in a SettingsState too, and cleared when game starts
 
+var end_game_menu: PackedScene = preload("res://menus/end_game_menu.tscn")
+
 func _enter_tree() -> void:
 	# Load levels. Hard error ok
 	var level_maps_dir = DirAccess.open("res://assets/levels")
@@ -36,6 +38,8 @@ func set_start_pos(pos):
 
 var TOTAL_NPCS = -1 # -1 to represent default/error state, set when in menu
 var SATISFIED_NPCS = 0
+# TODO: make a more complex enum if need-be
+var IS_GAME_RUNNING = false # set to true in level manager
 
 func set_total_npcs(new_total_npcs):
 	TOTAL_NPCS = new_total_npcs
@@ -76,6 +80,9 @@ func show_time_elapsed():
 
 func end_game():
 	end_game_stopwatch()
+	IS_GAME_RUNNING = false
+	var end_game_menu_scene = end_game_menu.instantiate()
+	get_tree().root.add_child(end_game_menu_scene)
 	print("All NPCs satisfied! Game complete!")
 
 # Will mimic the Escape Simulator inventory system, works for me. UI and all.

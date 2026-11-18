@@ -19,9 +19,12 @@ func _ready():
 	GlobalState.character = self
 	if GlobalState.START_POSITION != null:
 		position = GlobalState.START_POSITION
-	print("PERSON:", global_position)
 
 func _physics_process(delta: float) -> void:
+	# this feels wrong, just to get around end game menu
+	if !GlobalState.IS_GAME_RUNNING:
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -65,10 +68,12 @@ func _unhandled_input(event):
 				# big if statement, though just two things right now
 				handle_entity_interaction(entity_node)
 
+	# DELETE ME
 	# Key pressed for debugging, menu, etc.
 	# Player always in scene so this is fine?
 	if event.is_action_pressed("EXIT"):
-		get_tree().quit()
+		GlobalState.end_game() # debug change
+		# get_tree().quit()
 
 func check_raycast_collision(exceptions = []):
 	var viewport_size = camera.get_viewport().get_visible_rect().size

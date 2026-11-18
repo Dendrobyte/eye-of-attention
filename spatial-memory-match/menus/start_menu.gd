@@ -29,7 +29,6 @@ func _on_settings_pressed() -> void:
 func _on_how_to_play_pressed() -> void:
 	pass
 
-
 func _on_credits_pressed() -> void:
 	pass
 

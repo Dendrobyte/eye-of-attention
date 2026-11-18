@@ -4,6 +4,8 @@ func _ready() -> void:
 	hide()
 
 func _input(event: InputEvent) -> void:
+	if !GlobalState.IS_GAME_RUNNING:
+		return
 	if event.is_action_pressed("ESCAPE"):
 		toggle_menu()
 	if event is InputEventMouseButton:
@@ -25,7 +27,6 @@ func toggle_menu():
 # Wired up via engine
 func _on_resume_pressed() -> void:
 	toggle_menu()
-
 
 func _on_quit_game_pressed() -> void:
 	get_tree().quit()
