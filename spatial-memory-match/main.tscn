@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bv7pxogm15l82"]
 
 [ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://scripts/level_manager.gd" id="1_h2yge"]
-[ext_resource type="PackedScene" uid="uid://dbp1rfb4tv8ok" path="res://assets/levels/prototype_map.glb" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://8m1ib2vweuxn" path="res://menus/pause_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cn1yumv7bdfvc" path="res://assets/levels/first_floor.glb" id="3_7mycd"]
 [ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
 
 [sub_resource type="Theme" id="Theme_lquwl"]
@@ -29,7 +29,7 @@ level_scene_name = "first_floor"
 no_randomize = true
 npc_count = 2
 
-[node name="prototype_map" parent="LevelManager" unique_id=7209299 instance=ExtResource("1_ig7tw")]
+[node name="first_floor" parent="LevelManager" unique_id=78145032 instance=ExtResource("3_7mycd")]
 
 [node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
 

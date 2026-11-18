@@ -4,6 +4,22 @@ extends Node
 var level_manager: LevelManager = null
 var character: Character1P = null
 
+var LEVEL_LIST = [] # dynamically loaded in enter tree
+# TODO: Load settings in the level, e.g. early traversal to get player position count, etc.
+# Things like this could be in a SettingsState too, and cleared when game starts
+
+func _enter_tree() -> void:
+	# Load levels. Hard error ok
+	var level_maps_dir = DirAccess.open("res://assets/levels")
+	level_maps_dir.list_dir_begin() # get_next() will close when it hits the end
+
+	var file_name = level_maps_dir.get_next()
+	while file_name != "":
+		if file_name.ends_with(".glb"):
+			var level_name = file_name.rstrip(".glb")
+			LEVEL_LIST.append(level_name)
+		file_name = level_maps_dir.get_next()
+
 # Contains references to the nodes from the name, to be temporarily duplicated for the npc want
 var item_node_map = {} # { "name": node }
 

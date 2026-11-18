@@ -22,6 +22,7 @@ func _ready() -> void:
 	# Load the map from selected, must be present in `/assets/levels`
 	var map_scene: PackedScene = load("res://assets/levels/" + level_scene_name + ".glb")
 	var map = map_scene.instantiate()
+	map.name = "Level_" + level_scene_name
 	add_child(map)
 	var item_parent = $ItemParent
 	var npc_parent = $NPCParent
@@ -43,13 +44,15 @@ func _ready() -> void:
 			GlobalState.set_start_pos(child.position)
 			child.queue_free()
 		if child_name == "START":
-			print("START:", child.global_position)
 			var new_area_3d: Area3D = Area3D.new()
 			var area_collider = child.get_child(0).duplicate() # StaticBody3D -> CollisionShape3D
-			# new_area_3d.set_script("res://scripts/start_area_behavior.gd")
+			new_area_3d.position = child.position
+			new_area_3d.scale = child.scale
 			new_area_3d.add_child(area_collider)
 			new_area_3d.body_entered.connect(start_area_entered)
 			add_child(new_area_3d)
+			new_area_3d.name = "Start_Collider"
+			print("Created ", new_area_3d)
 			child.queue_free()
 
 	print("Loaded item and NPC positions\nNPC Count: ", len(NPC_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
@@ -125,6 +128,5 @@ func snap_down_pos(node_position, y_offset):
 	return node_position
 
 func start_area_entered(_body):
-	print("entered")
 	if !GlobalState.STOPWATCH_STARTED:
 		GlobalState.start_game_stopwatch()

@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name Character1P
 
-
 @export var SPEED: float = 10.0
 @export var JUMP_VELOCITY = 4.5
 @export var MOUSE_SENSITIVITY: float = 0.0024

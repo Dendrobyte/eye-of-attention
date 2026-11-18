@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8erbtsg68cjk" path="res://menus/start_menu.gd" id="1_1t8nw"]
 [ext_resource type="Texture2D" uid="uid://bl1r3armv0i2g" path="res://Screenshot 2026-11-17 at 7.22.42 AM.png" id="1_3kg5v"]
+[ext_resource type="Script" uid="uid://c10kdtjeytylx" path="res://menus/npc_count_spin_box.gd" id="3_w3tic"]
 
 [sub_resource type="Theme" id="Theme_hixdw"]
 default_font_size = 28
@@ -16,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_1t8nw")
 
 [node name="BG picture" type="TextureRect" parent="." unique_id=1812035796]
+visible = false
 layout_mode = 0
 offset_left = -154.0
 offset_top = -83.0
@@ -23,7 +25,13 @@ offset_right = 1272.0
 offset_bottom = 741.0
 texture = ExtResource("1_3kg5v")
 
-[node name="Title" type="RichTextLabel" parent="." unique_id=1402932599]
+[node name="HomeStart" type="Control" parent="." unique_id=1384976429]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="RichTextLabel" parent="HomeStart" unique_id=1402932599]
 layout_mode = 0
 offset_left = 34.0
 offset_top = 33.0
@@ -33,40 +41,100 @@ theme_override_font_sizes/normal_font_size = 52
 text = "Mask-erade"
 fit_content = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=704100914]
+[node name="VBoxContainer" type="VBoxContainer" parent="HomeStart" unique_id=704100914]
 layout_mode = 0
 offset_left = 34.0
 offset_top = 115.0
 offset_right = 264.0
-offset_bottom = 362.0
+offset_bottom = 366.0
 
-[node name="Play" type="Button" parent="VBoxContainer" unique_id=850114048]
+[node name="Play" type="Button" parent="HomeStart/VBoxContainer" unique_id=850114048]
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
 text = "Play"
 
-[node name="Settings" type="Button" parent="VBoxContainer" unique_id=2043854285]
+[node name="Settings" type="Button" parent="HomeStart/VBoxContainer" unique_id=2043854285]
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
 text = "Settings"
 
-[node name="How to Play" type="Button" parent="VBoxContainer" unique_id=970191339]
+[node name="How to Play" type="Button" parent="HomeStart/VBoxContainer" unique_id=970191339]
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
 text = "How to Play"
 
-[node name="Credits" type="Button" parent="VBoxContainer" unique_id=1894966874]
+[node name="Credits" type="Button" parent="HomeStart/VBoxContainer" unique_id=1894966874]
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
 text = "Credits"
 
-[node name="Quit Game" type="Button" parent="VBoxContainer" unique_id=1858353025]
+[node name="Quit Game" type="Button" parent="HomeStart/VBoxContainer" unique_id=1858353025]
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
 text = "Quit Game"
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit Game" to="." method="_on_quit_pressed"]
+[node name="GameConfig" type="Control" parent="." unique_id=2105795899]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameConfig" unique_id=160356835]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameConfig/CenterContainer" unique_id=1047229484]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=1600514582]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 52
+text = "Level Settings"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Level" type="HBoxContainer" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=416396196]
+layout_mode = 2
+
+[node name="LevelText" type="RichTextLabel" parent="GameConfig/CenterContainer/VBoxContainer/Level" unique_id=1948629033]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LevelChoice" type="OptionButton" parent="GameConfig/CenterContainer/VBoxContainer/Level" unique_id=103324733]
+layout_mode = 2
+
+[node name="NPCCount" type="HBoxContainer" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=511948209]
+layout_mode = 2
+
+[node name="NPCCountText" type="RichTextLabel" parent="GameConfig/CenterContainer/VBoxContainer/NPCCount" unique_id=1258986950]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Num of NPCs"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SpinBox" type="SpinBox" parent="GameConfig/CenterContainer/VBoxContainer/NPCCount" unique_id=535777062]
+layout_mode = 2
+script = ExtResource("3_w3tic")
+
+[node name="Start Game" type="Button" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=1516305253]
+layout_mode = 2
+text = "Start Game"
+
+[connection signal="pressed" from="HomeStart/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HomeStart/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HomeStart/VBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="HomeStart/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="HomeStart/VBoxContainer/Quit Game" to="." method="_on_quit_pressed"]
+[connection signal="item_selected" from="GameConfig/CenterContainer/VBoxContainer/Level/LevelChoice" to="." method="_on_level_choice_item_selected"]
+[connection signal="pressed" from="GameConfig/CenterContainer/VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
