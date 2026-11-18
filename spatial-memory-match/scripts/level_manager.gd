@@ -18,7 +18,17 @@ var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Override with debugs only if GlobalState has default values
+	# When we play from the menu, total NPCs won't be -1
+	# TODO: We can make a list of configurable fields and a map where the value is the empty val
+	#		and do this more concisely
+	if GlobalState.TOTAL_NPCS != -1:
+		npc_count = GlobalState.TOTAL_NPCS
+	if GlobalState.SELECTED_LEVEL != "":
+		level_scene_name = GlobalState.SELECTED_LEVEL
+
 	get_child(0).queue_free() # free the prototype map
+
 	# Load the map from selected, must be present in `/assets/levels`
 	var map_scene: PackedScene = load("res://assets/levels/" + level_scene_name + ".glb")
 	var map = map_scene.instantiate()

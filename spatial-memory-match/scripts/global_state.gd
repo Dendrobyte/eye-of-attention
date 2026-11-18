@@ -20,6 +20,8 @@ func _enter_tree() -> void:
 			LEVEL_LIST.append(level_name)
 		file_name = level_maps_dir.get_next()
 
+var SELECTED_LEVEL = ""
+
 # Contains references to the nodes from the name, to be temporarily duplicated for the npc want
 var item_node_map = {} # { "name": node }
 
@@ -32,7 +34,7 @@ var START_POSITION: Vector3
 func set_start_pos(pos):
 	START_POSITION = pos
 
-var TOTAL_NPCS = -1 # -1 to represent default/error state
+var TOTAL_NPCS = -1 # -1 to represent default/error state, set when in menu
 var SATISFIED_NPCS = 0
 
 func set_total_npcs(new_total_npcs):

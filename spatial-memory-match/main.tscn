@@ -25,9 +25,9 @@ visible = false
 
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
-level_scene_name = "first_floor"
+level_scene_name = "prototype_map"
 no_randomize = true
-npc_count = 2
+npc_count = 1
 
 [node name="first_floor" parent="LevelManager" unique_id=78145032 instance=ExtResource("3_7mycd")]
 

@@ -38,11 +38,15 @@ func _on_quit_pressed() -> void:
 
 
 func _on_start_game_pressed() -> void:
-	# just show / hide this
+	# save the settings
+	var npc_count_int = int(npc_count_spinbox.value)
+	GlobalState.TOTAL_NPCS = npc_count_int
+	var selected_level_idx = level_dropdown.selected
+	GlobalState.SELECTED_LEVEL = level_dropdown.get_item_text(selected_level_idx)
+
 	var main_node = main_scene.instantiate()
 	get_parent().add_child(main_node)
 	self.queue_free()
-	pass # Replace with function body.
 
 # TODO: Reset the spin box / if it's max, set to max of the level
 func _on_level_choice_item_selected(index: int) -> void:
