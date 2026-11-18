@@ -43,6 +43,7 @@ func _ready() -> void:
 			GlobalState.set_start_pos(child.position)
 			child.queue_free()
 		if child_name == "START":
+			print("START:", child.global_position)
 			var new_area_3d: Area3D = Area3D.new()
 			var area_collider = child.get_child(0).duplicate() # StaticBody3D -> CollisionShape3D
 			# new_area_3d.set_script("res://scripts/start_area_behavior.gd")
@@ -124,5 +125,6 @@ func snap_down_pos(node_position, y_offset):
 	return node_position
 
 func start_area_entered(_body):
+	print("entered")
 	if !GlobalState.STOPWATCH_STARTED:
 		GlobalState.start_game_stopwatch()

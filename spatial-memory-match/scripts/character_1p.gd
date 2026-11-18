@@ -20,6 +20,7 @@ func _ready():
 	GlobalState.character = self
 	if GlobalState.START_POSITION != null:
 		position = GlobalState.START_POSITION
+	print("PERSON:", global_position)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -71,8 +72,10 @@ func _unhandled_input(event):
 		get_tree().quit()
 
 func check_raycast_collision(exceptions = []):
-	var origin = camera.project_ray_origin($Control.cursor_pos)
-	var end = origin + camera.project_ray_normal($Control.cursor_pos) * RAY_LENGTH
+	var viewport_size = camera.get_viewport().get_visible_rect().size
+	var center = Vector2(viewport_size.x / 2, viewport_size.y / 2)
+	var origin = camera.project_ray_origin(center)
+	var end = origin + camera.project_ray_normal(center) * RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	query.exclude = exceptions
 	query.collide_with_areas = true

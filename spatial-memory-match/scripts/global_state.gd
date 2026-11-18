@@ -37,12 +37,13 @@ var TIME_ELAPSED = 0.0
 
 func start_game_stopwatch():
 	STOPWATCH_STARTED = true
+	STOPWATCH_RUNNING = true
 	print("stopwatch started")
 
 # They won't be able to walk back through a level, so not bothering with the area that triggers start
 func end_game_stopwatch():
-	STOPWATCH_STARTED = true
-	STOPWATCH_RUNNING = true
+	STOPWATCH_STARTED = false
+	STOPWATCH_RUNNING = false
 	print("stopwatch stopped")
 
 func pause_game_stopwatch():
@@ -53,7 +54,7 @@ func resume_game_stopwatch():
 		STOPWATCH_RUNNING = true
 
 func show_time_elapsed():
-	return str(TIME_ELAPSED).pad_decimals(2)
+	return str(TIME_ELAPSED).pad_decimals(2).replace(".", ":")
 
 func end_game():
 	end_game_stopwatch()

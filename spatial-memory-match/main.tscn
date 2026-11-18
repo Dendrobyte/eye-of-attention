@@ -4,7 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dbp1rfb4tv8ok" path="res://assets/levels/prototype_map.glb" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://8m1ib2vweuxn" path="res://menus/pause_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://mjyhsmmc6p7x" path="res://scripts/control.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
+
+[sub_resource type="Theme" id="Theme_lquwl"]
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_654gu"]
+default_font_size = 17
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
 size = Vector3(1, 1.0537109, 1)
@@ -15,10 +21,11 @@ size = Vector3(1, 2.6698608, 1.0474243)
 [node name="Main" type="Node3D" unique_id=1752176662]
 
 [node name="PauseMenu" parent="." unique_id=1740259336 instance=ExtResource("1_lquwl")]
+visible = false
 
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
-level_scene_name = "prototype_map"
+level_scene_name = "first_floor"
 no_randomize = true
 npc_count = 2
 
@@ -28,14 +35,41 @@ npc_count = 2
 
 [node name="NPCParent" type="Node3D" parent="LevelManager" unique_id=459603274]
 
-[node name="Lights" type="Node3D" parent="LevelManager" unique_id=519051258]
+[node name="HUD" type="Control" parent="LevelManager" unique_id=82249870]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_lquwl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelManager/HUD" unique_id=379006197]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Timer" type="RichTextLabel" parent="LevelManager/HUD/HBoxContainer" unique_id=242304475]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 36)
+offset_transform_position_ratio = Vector2(0.05, 0)
+theme = SubResource("Theme_lquwl")
+text = "--:--"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Stats" type="RichTextLabel" parent="LevelManager/HUD/HBoxContainer" unique_id=976407652]
 visible = false
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LevelManager/Lights" unique_id=126248230]
-transform = Transform3D(0.82990915, 0.4477779, -0.3327849, 0, 0.5964971, 0.8026152, 0.5578986, -0.6660977, 0.49503842, -21.485598, 22.060188, 32.82515)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="LevelManager/Lights" unique_id=1714262996]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.788761, 6.6555643, -31.139204)
+layout_mode = 2
+theme = SubResource("Theme_654gu")
+text = "NPCS: 0/0 TODO"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1739137916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.207295, 14.966264)
@@ -46,18 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41322184, 0)
 
 [node name="HeldItem" type="Node3D" parent="Character/Camera" unique_id=926990059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049438953, -0.7243767)
-
-[node name="Control" type="Control" parent="Character" unique_id=836450976]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-script = ExtResource("4_1bvp3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Character" unique_id=429228823]
 transform = Transform3D(1, 0, 0, 0, 2.5690346, 0, 0, 0, 1, 0, -0.7206001, 0.076082945)
