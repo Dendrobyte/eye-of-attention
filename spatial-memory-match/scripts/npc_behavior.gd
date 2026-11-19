@@ -7,6 +7,9 @@ var want_timer: Timer
 
 var satisfied = false
 
+var primary_mat: Material = null
+var satisfied_mat: Material = null
+
 # True, take it off. False, put it on.
 func toggle_mask(on_or_off):
 	if on_or_off:
@@ -46,7 +49,15 @@ func _ready():
 	add_child(wanted_item)
 	$WantedItem.hide()
 
+	# Load the materials, fine for now with small amount unordered
+	# ALL MATERIALS LINKED TO `Arm_L`
+	var linked_material_base: MeshInstance3D = get_node("Arm_L")
+	primary_mat = linked_material_base.get_active_material(0)
+	satisfied_mat = linked_material_base.get_active_material(1)
+
+
 func interact():
+	print("Satisfied?", satisfied)
 	if satisfied:
 		print("Already gave character what they wanted")
 		return ""
@@ -57,8 +68,16 @@ func interact():
 # TODO: Show success and error visuals
 func maybe_satisfy(held_item_name: String):
 	if !satisfied && wanted_item_str == held_item_name:
-		satisfied = true
-		GlobalState.incr_satisfy_npc()
+		satisfy_npc()
 	else:
 		display_want()
 	return satisfied
+
+func satisfy_npc():
+	# TODO: Make them all the same mesh or something
+	for body_part in get_children():
+		if body_part as MeshInstance3D and body_part.name != "Mask":
+			$AnimationPlayer.play("jump")
+			body_part.set_surface_override_material(0, satisfied_mat)
+	satisfied = true
+	GlobalState.incr_satisfy_npc()

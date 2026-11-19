@@ -99,7 +99,6 @@ func _ready() -> void:
 		var p_transform = NPC_TRANSFORMS[p_count]
 		new_npc.position = p_transform.position
 		new_npc.rotation = p_transform.rotation
-		new_npc.set_script(NPC_SCRIPT)
 		new_npc.wanted_item_str = used_item_names.pop_back()
 		npc_parent.add_child(new_npc)
 	
