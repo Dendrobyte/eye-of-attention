@@ -38,6 +38,7 @@ func set_start_pos(pos):
 
 var TOTAL_NPCS = -1 # -1 to represent default/error state, set when in menu
 var SATISFIED_NPCS = 0
+var ERROR_WRONG_ITEM = 0
 # TODO: make a more complex enum if need-be
 var IS_GAME_RUNNING = false # set to true in level manager
 
@@ -50,6 +51,10 @@ func incr_satisfy_npc():
 	SATISFIED_NPCS += 1
 	if SATISFIED_NPCS == TOTAL_NPCS:
 		end_game()
+
+# Can follow this pattern for empty handed reviews
+func incr_error_wrong_item():
+	ERROR_WRONG_ITEM += 1
 
 # Game points, timer, etc.
 # These could be handled in LevelManager, which is acting as LevelState (aka whole game lol)
@@ -78,8 +83,20 @@ func resume_game_stopwatch():
 func show_time_elapsed():
 	return str(TIME_ELAPSED).pad_decimals(2).replace(".", ":")
 
+var STARS = 3 # i think a 5 star system would be better, post-jam TODO
+func calc_final_stars():
+	# Remove one per condition, versus set concretely
+	if ERROR_WRONG_ITEM > 1:
+		STARS -= 1
+	# 2 stars for 1 / 2 is weird but whatever
+	if TOTAL_NPCS > 2 && ERROR_WRONG_ITEM > int(TOTAL_NPCS * 0.25):
+		STARS -= 1
+	if TOTAL_NPCS > 4 && ERROR_WRONG_ITEM > int(TOTAL_NPCS * 0.25):
+		STARS -= 1
+
 func end_game():
 	end_game_stopwatch()
+	calc_final_stars()
 	IS_GAME_RUNNING = false
 	var end_game_menu_scene = end_game_menu.instantiate()
 	get_tree().root.add_child(end_game_menu_scene)

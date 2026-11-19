@@ -2,6 +2,7 @@ extends Control
 
 func _ready() -> void:
 	$CenterContainer/VBoxContainer/TimeReport.text += GlobalState.show_time_elapsed()
+	$CenterContainer/VBoxContainer/Stars.text += GlobalState.STARS + " / 3"
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _input(event: InputEvent) -> void:

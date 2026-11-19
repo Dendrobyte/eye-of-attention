@@ -10,6 +10,9 @@ var satisfied = false
 var primary_mat: Material = null
 var satisfied_mat: Material = null
 
+# Track if the player gave the wrong item once (or more)
+var was_wrong = false
+
 # True, take it off. False, put it on.
 func toggle_mask(on_or_off):
 	if on_or_off:
@@ -69,6 +72,10 @@ func interact():
 func maybe_satisfy(held_item_name: String):
 	if !satisfied && wanted_item_str == held_item_name:
 		satisfy_npc()
+	elif wanted_item_str != held_item_name && wanted_item_str != "":
+		was_wrong = true
+		GlobalState.incr_error_wrong_item()
+		display_want()
 	else:
 		display_want()
 	return satisfied
