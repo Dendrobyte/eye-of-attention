@@ -10,6 +10,9 @@ class_name Character1P
 var held_item: Node = null
 # Maybe we keep it becuase items can be put down since inv size is limited?
 var held_item_static_body: StaticBody3D = null # don't need this, don't need it in Teas either
+var held_item_parent = null
+
+var item_parent_node = null
 
 var camera: Camera3D
 
@@ -19,6 +22,10 @@ func _ready():
 	GlobalState.character = self
 	if GlobalState.START_POSITION != null:
 		position = GlobalState.START_POSITION
+
+	# We know I prefer references, but this is OK for now	
+	held_item_parent = get_node("Camera/HeldItem")
+	item_parent_node = get_tree().root.get_node("Main/LevelManager/ItemParent")
 
 func _physics_process(delta: float) -> void:
 	# this feels wrong, just to get around end game menu
@@ -67,6 +74,10 @@ func _unhandled_input(event):
 			if is_interactable(entity_node):
 				# big if statement, though just two things right now
 				handle_entity_interaction(entity_node)
+	
+	if event.is_action_pressed("SECONDARY"):
+		if held_item != null:
+			return_held_item()
 
 	# DELETE ME
 	# Key pressed for debugging, menu, etc.
@@ -97,7 +108,7 @@ func handle_entity_interaction(entity_node: Node):
 	if entity_node as ItemBehavior: # result is interacted item		# For now, we're only doing one item at a time
 		# TODO: Check inventory size here, send a popup message explaining no pickup
 		if held_item != null:
-			print("Can only hold one item at a time")
+			print("Canonlyholdoneitematatime")
 			return
 		pick_up_item(result)
 	if entity_node as NPCBehavior: # result is NPC's wanted item name (string)
@@ -114,11 +125,15 @@ func pick_up_item(item_node: ItemBehavior):
 	# sorta establishing a "pass around" instead of holding on to refs?
 	# don't midn it, because parent eventually becomes game inventory?
 	item_node.get_parent().remove_child(item_node)
-	var held_item_node = get_node("Camera/HeldItem")
-	item_node.position = held_item_node.position
-	held_item_node.add_child(item_node)
+	item_node.position = held_item_parent.position
+	held_item_parent.add_child(item_node)
 
 func clear_held_item():
 	held_item = null
-	var held_item_node = get_node("Camera/HeldItem")
-	held_item_node.get_child(0).queue_free()
+	held_item_parent.get_child(0).queue_free()
+
+func return_held_item():
+	held_item_parent.remove_child(held_item)
+	item_parent_node.add_child(held_item)
+	held_item.return_to_origin()
+	held_item = null

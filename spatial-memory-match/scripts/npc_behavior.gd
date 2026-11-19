@@ -60,7 +60,6 @@ func _ready():
 
 
 func interact():
-	print("Satisfied?", satisfied)
 	if satisfied:
 		print("Already gave character what they wanted")
 		return ""

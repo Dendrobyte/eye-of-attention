@@ -36,6 +36,11 @@ layout_mode = 2
 text = "Time: "
 fit_content = true
 
+[node name="Stars" type="RichTextLabel" parent="CenterContainer/VBoxContainer" unique_id=1812127657]
+layout_mode = 2
+text = "Stars: "
+fit_content = true
+
 [node name="Retry" type="Button" parent="CenterContainer/VBoxContainer" unique_id=135480145]
 layout_mode = 2
 text = "Retry"
