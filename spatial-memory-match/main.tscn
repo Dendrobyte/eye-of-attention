@@ -26,7 +26,6 @@ visible = false
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
 level_scene_name = "prototype_map"
-no_randomize = true
 npc_count = 1
 
 [node name="prototype_map" parent="LevelManager" unique_id=2083568902 instance=ExtResource("3_lquwl")]
