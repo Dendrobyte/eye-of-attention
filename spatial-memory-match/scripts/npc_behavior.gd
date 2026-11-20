@@ -60,8 +60,9 @@ func _ready():
 	primary_mat = linked_material_base.get_active_material(0)
 	satisfied_mat = linked_material_base.get_active_material(1)
 	shirt_color_mat = linked_material_base.get_active_material(2)
-	# randomize shirt to new color, just restrict the range
-
+	var new_shirt_color_mat = shirt_color_mat.duplicate()
+	new_shirt_color_mat.albedo_color = GlobalState.SHIRT_COLORS.pick_random()
+	linked_material_base.set_surface_override_material(2, new_shirt_color_mat)
 
 func interact():
 	if satisfied:
