@@ -10,9 +10,10 @@ var level_max_npcs = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# it's been starting on first floor lately
 	step = 1
 	min_value = 2
-	max_value = 3
+	max_value = 8
 
 # Called by level change function to reset to 2 and set max value to the selected map
 func reset(level_name):

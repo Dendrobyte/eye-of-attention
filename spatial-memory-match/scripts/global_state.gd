@@ -12,15 +12,16 @@ var end_game_menu: PackedScene = preload("res://menus/end_game_menu.tscn")
 
 func _enter_tree() -> void:
 	# Load levels. Hard error ok
-	var level_maps_dir = DirAccess.open("res://assets/levels")
-	level_maps_dir.list_dir_begin() # get_next() will close when it hits the end
+	var level_maps_dir = ResourceLoader.list_directory("res://assets/levels")
+	# level_maps_dir.list_dir_begin() # get_next() will close when it hits the end
 
-	var file_name = level_maps_dir.get_next()
-	while file_name != "":
+	# var file_name = level_maps_dir.get_next()
+	# while file_name != "":
+	for file_name in level_maps_dir:
 		if file_name.ends_with(".gltf"):
 			var level_name = file_name.rstrip(".gltf")
 			LEVEL_LIST.append(level_name)
-		file_name = level_maps_dir.get_next()
+		# file_name = level_maps_dir.get_next()
 
 var SELECTED_LEVEL = ""
 
