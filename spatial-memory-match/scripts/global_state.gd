@@ -17,8 +17,8 @@ func _enter_tree() -> void:
 
 	var file_name = level_maps_dir.get_next()
 	while file_name != "":
-		if file_name.ends_with(".glb"):
-			var level_name = file_name.rstrip(".glb")
+		if file_name.ends_with(".gltf"):
+			var level_name = file_name.rstrip(".gltf")
 			LEVEL_LIST.append(level_name)
 		file_name = level_maps_dir.get_next()
 

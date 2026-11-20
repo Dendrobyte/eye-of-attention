@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbp1rfb4tv8ok"
-path="res://.godot/imported/prototype_map.glb-2a01a37f19db67af68c29040c4ff1e2b.scn"
+uid="uid://burwtgo5mraqd"
+path="res://.godot/imported/prototype_map.gltf-70141a383f7a6bd39486eb736e345c2a.scn"
 
 [deps]
 
-source_file="res://assets/levels/prototype_map.glb"
-dest_files=["res://.godot/imported/prototype_map.glb-2a01a37f19db67af68c29040c4ff1e2b.scn"]
+source_file="res://assets/levels/prototype_map.gltf"
+dest_files=["res://.godot/imported/prototype_map.gltf-70141a383f7a6bd39486eb736e345c2a.scn"]
 
 [params]
 

@@ -4,7 +4,7 @@ class_name Character1P
 @export var SPEED: float = 10.0
 @export var JUMP_VELOCITY = 4.5
 @export var MOUSE_SENSITIVITY: float = 0.0024
-@export var RAY_LENGTH = 8
+@export var RAY_LENGTH = 12
 
 # If we're holding a picked up item, don't collide with it
 var held_item: Node = null

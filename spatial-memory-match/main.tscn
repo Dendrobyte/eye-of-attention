@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://scripts/level_manager.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://8m1ib2vweuxn" path="res://menus/pause_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://c3nigtxtijr45" path="res://assets/levels/first_floor.gltf" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://burwtgo5mraqd" path="res://assets/levels/prototype_map.gltf" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
 
 [sub_resource type="Theme" id="Theme_lquwl"]
@@ -25,11 +25,11 @@ visible = false
 
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
-level_scene_name = "first_floor"
+level_scene_name = "prototype_map"
 no_randomize = true
 npc_count = 1
 
-[node name="first_floor" parent="LevelManager" unique_id=2133586544 instance=ExtResource("3_lquwl")]
+[node name="prototype_map" parent="LevelManager" unique_id=2083568902 instance=ExtResource("3_lquwl")]
 
 [node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
 

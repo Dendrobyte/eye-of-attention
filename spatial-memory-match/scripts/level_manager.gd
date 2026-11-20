@@ -96,7 +96,7 @@ func _ready() -> void:
 		NPC_TRANSFORMS.shuffle()
 
 	# Spawn npc models at positions
-	for p_count in range(npc_count):
+	for p_count in range(npc_count + 1):
 		var new_npc: Node = NPC_MODEL.instantiate()
 		var p_transform = NPC_TRANSFORMS[p_count]
 		new_npc.position = p_transform.position
