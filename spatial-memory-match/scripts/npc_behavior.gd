@@ -9,6 +9,7 @@ var satisfied = false
 
 var primary_mat: Material = null
 var satisfied_mat: Material = null
+var shirt_color_mat: Material = null
 
 # Track if the player gave the wrong item once (or more)
 var was_wrong = false
@@ -40,6 +41,7 @@ func display_want():
 		$WantedItem.hide()
 
 func _ready():
+	rotation.y -= PI # blender to godot thing
 	# Get the wanted item and spawn it above head, then hide it
 	var want_pos = $CharParent/Want.position
 	$CharParent/Want.queue_free()
@@ -53,10 +55,12 @@ func _ready():
 	$WantedItem.hide()
 
 	# Load the materials, fine for now with small amount unordered
-	# ALL MATERIALS LINKED TO `Arm_L`
-	var linked_material_base: MeshInstance3D = get_node("CharParent/Arm_L")
+	# ALL MATERIALS LINKED TO `Torso` 0th material
+	var linked_material_base: MeshInstance3D = get_node("CharParent/Torso")
 	primary_mat = linked_material_base.get_active_material(0)
 	satisfied_mat = linked_material_base.get_active_material(1)
+	shirt_color_mat = linked_material_base.get_active_material(2)
+	# randomize shirt to new color, just restrict the range
 
 
 func interact():

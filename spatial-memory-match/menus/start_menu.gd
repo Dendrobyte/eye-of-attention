@@ -4,7 +4,7 @@ var main_scene = preload("res://main.tscn")
 
 @onready var level_dropdown: OptionButton = $GameConfig/CenterContainer/VBoxContainer/Level/LevelChoice
 @onready var npc_count_spinbox: SpinBox = $GameConfig/CenterContainer/VBoxContainer/NPCCount/SpinBox
-
+@onready var start_game_button: Button = get_node("GameConfig/CenterContainer/VBoxContainer/Start Game")
 # To load which image to render or something
 func _ready() -> void:
 	var all_levels = GlobalState.LEVEL_LIST
@@ -43,6 +43,7 @@ func _on_start_game_pressed() -> void:
 	var selected_level_idx = level_dropdown.selected
 	GlobalState.SELECTED_LEVEL = level_dropdown.get_item_text(selected_level_idx)
 
+	start_game_button.text = "Loading..."
 	var main_node = main_scene.instantiate()
 	get_parent().add_child(main_node)
 	self.queue_free()

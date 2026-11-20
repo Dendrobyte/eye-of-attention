@@ -6,6 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://burwtgo5mraqd" path="res://assets/levels/prototype_map.gltf" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vw27"]
+sky_top_color = Color(0.3616567, 0.62887424, 0.8810701, 1)
+
+[sub_resource type="Sky" id="Sky_lquwl"]
+sky_material = SubResource("ProceduralSkyMaterial_5vw27")
+
+[sub_resource type="Environment" id="Environment_lquwl"]
+background_mode = 2
+sky = SubResource("Sky_lquwl")
+ambient_light_source = 3
+ambient_light_color = Color(0.6543351, 0.8819266, 0.953373, 1)
+reflected_light_source = 2
+
 [sub_resource type="Theme" id="Theme_lquwl"]
 default_font_size = 32
 
@@ -30,6 +43,9 @@ no_randomize = true
 npc_count = 3
 
 [node name="prototype_map" parent="LevelManager" unique_id=2083568902 instance=ExtResource("3_lquwl")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="LevelManager" unique_id=666315267]
+environment = SubResource("Environment_lquwl")
 
 [node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
 
