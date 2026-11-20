@@ -6,7 +6,7 @@ var NPC_TRANSFORMS = [] # { "position": ..., "rotation": ... }
 
 var NPC_MODEL = preload("res://entity_scenes/char_base_scene.tscn")
 var NPC_SCRIPT = preload("res://scripts/npc_behavior.gd")
-var ITEM_SCENE = preload("res://assets/items.glb")
+var ITEM_SCENE = preload("res://assets/items.gltf")
 var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 
 # Debug Options
@@ -63,7 +63,6 @@ func _ready() -> void:
 			new_area_3d.body_entered.connect(start_area_entered)
 			add_child(new_area_3d)
 			new_area_3d.name = "Start_Collider"
-			print("Created ", new_area_3d)
 			child.queue_free()
 		else: # for general environement, make sure we're using vertex colors "as albedo"
 			enable_vertex_colors(child)
@@ -102,6 +101,7 @@ func _ready() -> void:
 		var p_transform = NPC_TRANSFORMS[p_count]
 		new_npc.position = p_transform.position
 		new_npc.rotation = p_transform.rotation
+		new_npc.scale = new_npc.scale * 1.7
 		new_npc.wanted_item_str = used_item_names.pop_back()
 		npc_parent.add_child(new_npc)
 	
