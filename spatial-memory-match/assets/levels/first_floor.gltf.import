@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cn1yumv7bdfvc"
-path="res://.godot/imported/first_floor.glb-9d1b398a04cb66b46c061eb1327acc01.scn"
+uid="uid://c3nigtxtijr45"
+path="res://.godot/imported/first_floor.gltf-c5b904da6c10a2c3280dc41d2b83fb17.scn"
 
 [deps]
 
-source_file="res://assets/levels/first_floor.glb"
-dest_files=["res://.godot/imported/first_floor.glb-9d1b398a04cb66b46c061eb1327acc01.scn"]
+source_file="res://assets/levels/first_floor.gltf"
+dest_files=["res://.godot/imported/first_floor.gltf-c5b904da6c10a2c3280dc41d2b83fb17.scn"]
 
 [params]
 

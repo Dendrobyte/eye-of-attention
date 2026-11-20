@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cp1t1cd1tv6fp" path="res://scripts/level_manager.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://8m1ib2vweuxn" path="res://menus/pause_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cn1yumv7bdfvc" path="res://assets/levels/first_floor.glb" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c3nigtxtijr45" path="res://assets/levels/first_floor.gltf" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
 
 [sub_resource type="Theme" id="Theme_lquwl"]
@@ -13,7 +13,7 @@ default_font_size = 32
 default_font_size = 17
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
-size = Vector3(1, 1.0537109, 1)
+size = Vector3(1, 1.6678467, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_654gu"]
 size = Vector3(1, 2.6698608, 1.0474243)
@@ -25,11 +25,11 @@ visible = false
 
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
-level_scene_name = "prototype_map"
+level_scene_name = "first_floor"
 no_randomize = true
 npc_count = 1
 
-[node name="first_floor" parent="LevelManager" unique_id=78145032 instance=ExtResource("3_7mycd")]
+[node name="first_floor" parent="LevelManager" unique_id=2133586544 instance=ExtResource("3_lquwl")]
 
 [node name="ItemParent" type="Node3D" parent="LevelManager" unique_id=746855518]
 
@@ -72,17 +72,18 @@ autowrap_mode = 0
 horizontal_alignment = 2
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1739137916]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.207295, 14.966264)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.15975, 2.207295, 4.523862)
 script = ExtResource("2_0xm2m")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=961118087]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41322184, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.172665, 0)
+fov = 38.3
 
 [node name="HeldItem" type="Node3D" parent="Character/Camera" unique_id=926990059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049438953, -0.7243767)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Character" unique_id=429228823]
-transform = Transform3D(1, 0, 0, 0, 2.5690346, 0, 0, 0, 1, 0, -0.7206001, 0.076082945)
+transform = Transform3D(1, 0, 0, 0, 2.5690346, 0, 0, 0, 1, 0, 0.06826782, 0.07608318)
 mesh = SubResource("BoxMesh_ig7tw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Character" unique_id=1896804616]

@@ -31,7 +31,7 @@ func _ready() -> void:
 	get_child(0).queue_free() # free the prototype map
 
 	# Load the map from selected, must be present in `/assets/levels`
-	var map_scene: PackedScene = load("res://assets/levels/" + level_scene_name + ".glb")
+	var map_scene: PackedScene = load("res://assets/levels/" + level_scene_name + ".gltf")
 	var map = map_scene.instantiate()
 	map.name = "Level_" + level_scene_name
 	add_child(map)
@@ -65,6 +65,9 @@ func _ready() -> void:
 			new_area_3d.name = "Start_Collider"
 			print("Created ", new_area_3d)
 			child.queue_free()
+		else: # for general environement, make sure we're using vertex colors "as albedo"
+			enable_vertex_colors(child)
+
 
 	print("Loaded item and NPC positions\nNPC Count: ", len(NPC_TRANSFORMS), "\nItem Count: ", len(ITEM_POSITIONS))
 
@@ -140,3 +143,9 @@ func snap_down_pos(node_position, y_offset):
 func start_area_entered(_body):
 	if !GlobalState.STOPWATCH_STARTED:
 		GlobalState.start_game_stopwatch()
+
+func enable_vertex_colors(env_item_node):
+	if env_item_node is MeshInstance3D:
+		var material = env_item_node.get_active_material(0)
+		if material is BaseMaterial3D:
+			material.vertex_color_use_as_albedo = true
