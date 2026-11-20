@@ -34,12 +34,15 @@ func _physics_process(delta: float) -> void:
 
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * 4 * delta
 
 	# TODO: Should have a boolean flag that flips in the input func
 	var MULT = 1.0
 	if Input.is_action_pressed("SPRINT"):
 		MULT = 4.0
+	
+	if Input.is_action_pressed("JUMP"):
+		velocity.y = 8
 
 	# Handle the movement input
 	var input_dir := Input.get_vector("MOVE_LEFT", "MOVE_RIGHT", "MOVE_FORWARD", "MOVE_BACKWARD")

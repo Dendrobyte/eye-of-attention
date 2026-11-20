@@ -5,6 +5,7 @@ extends SpinBox
 # Temporary for game jam. Remember to change these if the name or count changes!
 var level_max_npcs = {
 	"prototype_map": 3,
+	"tutorial": 3,
 	"first_floor": 8,
 }
 

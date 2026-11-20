@@ -20,6 +20,7 @@ func _enter_tree() -> void:
 	for file_name in level_maps_dir:
 		if file_name.ends_with(".gltf"):
 			var level_name = file_name.rstrip(".gltf")
+			print("loaded ", level_name)
 			LEVEL_LIST.append(level_name)
 		# file_name = level_maps_dir.get_next()
 

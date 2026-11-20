@@ -10,7 +10,7 @@ var ITEM_SCENE = preload("res://assets/items.gltf")
 var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
 
 # Debug Options
-@export_enum("prototype_map", "first_floor") var level_scene_name: String
+@export_enum("prototype_map", "tutorial", "first_floor") var level_scene_name: String
 @export var no_randomize: bool = false
 
 # These options mimic what can be configured in menu / game settings
@@ -96,9 +96,7 @@ func _ready() -> void:
 		NPC_TRANSFORMS.shuffle()
 
 	# Spawn npc models at positions
-	print("NPC COUNT", npc_count)
 	for p_count in range(npc_count):
-		print("Spawning npc")
 		var new_npc: Node = NPC_MODEL.instantiate()
 		var p_transform = NPC_TRANSFORMS[p_count]
 		new_npc.position = p_transform.position

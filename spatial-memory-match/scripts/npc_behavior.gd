@@ -41,8 +41,8 @@ func display_want():
 
 func _ready():
 	# Get the wanted item and spawn it above head, then hide it
-	var want_pos = $Want.position
-	$Want.queue_free()
+	var want_pos = $CharParent/Want.position
+	$CharParent/Want.queue_free()
 
 	var wanted_item = GlobalState.item_node_map[wanted_item_str].duplicate()
 	wanted_item.get_node("StaticBody3D").queue_free()
@@ -54,14 +54,13 @@ func _ready():
 
 	# Load the materials, fine for now with small amount unordered
 	# ALL MATERIALS LINKED TO `Arm_L`
-	var linked_material_base: MeshInstance3D = get_node("Arm_L")
+	var linked_material_base: MeshInstance3D = get_node("CharParent/Arm_L")
 	primary_mat = linked_material_base.get_active_material(0)
 	satisfied_mat = linked_material_base.get_active_material(1)
 
 
 func interact():
 	if satisfied:
-		print("Already gave character what they wanted")
 		return ""
 	else:
 		# may show flicker of item?
@@ -81,9 +80,9 @@ func maybe_satisfy(held_item_name: String):
 
 func satisfy_npc():
 	# TODO: Make them all the same mesh or something
-	for body_part in get_children():
+	for body_part in get_node("CharParent").get_children():
 		if body_part as MeshInstance3D and body_part.name != "Mask":
-			$AnimationPlayer.play("jump")
 			body_part.set_surface_override_material(0, satisfied_mat)
+		$AnimationPlayer.play("jump")
 	satisfied = true
 	GlobalState.incr_satisfy_npc()

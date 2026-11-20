@@ -8,7 +8,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mask:position:x")
+tracks/0/path = NodePath("CharParent/Mask:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +19,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mask:position:y")
+tracks/1/path = NodePath("CharParent/Mask:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -30,7 +30,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mask:position:z")
+tracks/2/path = NodePath("CharParent/Mask:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -41,7 +41,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Mask:rotation:x")
+tracks/3/path = NodePath("CharParent/Mask:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -52,7 +52,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Mask:rotation:y")
+tracks/4/path = NodePath("CharParent/Mask:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -63,7 +63,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Mask:rotation:z")
+tracks/5/path = NodePath("CharParent/Mask:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -85,18 +85,18 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath(".:position:y")
+tracks/7/path = NodePath(".:position:z")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.09515369, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath(".:position:z")
+tracks/8/path = NodePath("CharParent:position:y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -111,13 +111,13 @@ length = 0.6
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:y")
+tracks/0/path = NodePath("CharParent:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(-0.008856699, -0.25, 0, 0.1, 0.0059713963, 0.6376006, -0.16666667, 0.010396123, 0.13333209, -0.00831682, 0, -0.058333337, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.6)
+"points": PackedFloat32Array(0, -0.25, 0, 0.13333334, -0.0053104167, 0.3415581, -0.17666666, -0.018441826, 0.18991162, 0.019824434, 0, -0.10000001, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.31, 0.6)
 }
 
 [sub_resource type="Animation" id="Animation_02bcf"]
@@ -126,7 +126,7 @@ length = 0.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mask:position:x")
+tracks/0/path = NodePath("CharParent/Mask:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -137,7 +137,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mask:position:y")
+tracks/1/path = NodePath("CharParent/Mask:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -148,7 +148,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mask:position:z")
+tracks/2/path = NodePath("CharParent/Mask:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -159,7 +159,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Mask:rotation:z")
+tracks/3/path = NodePath("CharParent/Mask:rotation:z")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -174,7 +174,7 @@ length = 0.36666667
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mask:position:x")
+tracks/0/path = NodePath("CharParent/Mask:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -185,7 +185,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mask:position:y")
+tracks/1/path = NodePath("CharParent/Mask:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -196,7 +196,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Mask:position:z")
+tracks/2/path = NodePath("CharParent/Mask:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -207,7 +207,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Mask:rotation:x")
+tracks/3/path = NodePath("CharParent/Mask:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -218,7 +218,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Mask:rotation:y")
+tracks/4/path = NodePath("CharParent/Mask:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -229,7 +229,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Mask:rotation:z")
+tracks/5/path = NodePath("CharParent/Mask:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -247,11 +247,8 @@ _data = {
 }
 
 [node name="char_base" unique_id=165551240 instance=ExtResource("1_02bcf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09515369, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.008856699, 0)
 script = ExtResource("2_6d5g6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0" unique_id=1901851464]
 libraries/ = SubResource("AnimationLibrary_6d5g6")
-
-[node name="Mask" parent="." index="8" unique_id=1728848838]
-transform = Transform3D(-0.106577665, 0, 0, 0, -0.13161713, 0, 0, 0, -0.13161713, -7.72594e-06, 2.4678926, -0.20849395)
