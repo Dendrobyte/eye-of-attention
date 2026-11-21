@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 var camera_pitch = 0.0
 func _unhandled_input(event):
 	# Camera movement
-	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED && !is_looking:
+	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED: # && !is_looking:
 		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 		camera_pitch = clamp(
 			camera_pitch - event.relative.y * MOUSE_SENSITIVITY,
