@@ -38,7 +38,7 @@ visible = false
 
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
-level_scene_name = "tutorial"
+level_scene_name = "first_floor"
 no_randomize = true
 npc_count = 3
 
