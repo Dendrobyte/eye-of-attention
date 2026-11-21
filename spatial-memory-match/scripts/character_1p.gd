@@ -118,7 +118,7 @@ func handle_entity_interaction(entity_node: Node):
 		var wanted_item_name: String = result # just a rename
 		if held_item == null:
 			entity_node.display_want()
-			tween_camera_at_npc_item()
+			# tween_camera_at_npc_item()
 		elif wanted_item_name != "": # want fulfilled
 			var satisfied = entity_node.maybe_satisfy(held_item.name)
 			if satisfied: clear_held_item()
@@ -143,21 +143,22 @@ func return_held_item():
 	held_item = null
 
 # I don't love this but it's a learning endeavor
-var is_looking = false
-func tween_camera_at_npc_item():
-	var original_rotation = camera.rotation
-	var looking_at_rotation = Vector3(camera.rotation.x + deg_to_rad(30), camera.rotation.y, camera.rotation.z)
-	# var origin_fov = camera.fov
-	# var target_fov = camera.fov - 30
+# TODO: Revisit this idea
+# var is_looking = false
+# func tween_camera_at_npc_item():
+# 	var original_rotation = camera.rotation
+# 	var looking_at_rotation = Vector3(camera.rotation.x + deg_to_rad(30), camera.rotation.y, camera.rotation.z)
+# 	# var origin_fov = camera.fov
+# 	# var target_fov = camera.fov - 30
 
-	is_looking = true
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(camera, "rotation", looking_at_rotation, 1.0)
-	# tween.tween_property(camera, "fov", target_fov, 0.5)
-	await tween.finished
-	await get_tree().create_timer(0.5).timeout
+# 	is_looking = true
+# 	var tween = create_tween()
+# 	tween.set_parallel(true)
+# 	tween.tween_property(camera, "rotation", looking_at_rotation, 1.0)
+# 	# tween.tween_property(camera, "fov", target_fov, 0.5)
+# 	await tween.finished
+# 	await get_tree().create_timer(0.5).timeout
 
-	camera.rotation = original_rotation
-	# camera.fov = origin_fov
-	is_looking = false
+# 	camera.rotation = original_rotation
+# 	# camera.fov = origin_fov
+# 	is_looking = false
