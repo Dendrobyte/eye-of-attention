@@ -4,6 +4,8 @@ extends Node
 var level_manager: LevelManager = null
 var character: Character1P = null
 
+var no_randomize = false
+
 var LEVEL_LIST = [] # dynamically loaded in enter tree
 # TODO: Load settings in the level, e.g. early traversal to get player position count, etc.
 # Things like this could be in a SettingsState too, and cleared when game starts

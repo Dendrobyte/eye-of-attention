@@ -4,7 +4,7 @@ var main_scene = preload("res://main.tscn")
 
 @onready var level_dropdown: OptionButton = $GameConfig/CenterContainer/VBoxContainer/Level/LevelChoice
 @onready var npc_count_spinbox: SpinBox = $GameConfig/CenterContainer/VBoxContainer/NPCCount/SpinBox
-@onready var start_game_button: Button = get_node("GameConfig/CenterContainer/VBoxContainer/Start Game")
+@onready var start_game_button: TextureButton = get_node("GameConfig/CenterContainer/VBoxContainer/Start Game")
 # To load which image to render or something
 func _ready() -> void:
 	var all_levels = GlobalState.LEVEL_LIST
@@ -27,7 +27,17 @@ func _on_settings_pressed() -> void:
 
 
 func _on_how_to_play_pressed() -> void:
-	pass
+	print()
+
+func _on_how_to_play_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		if !GlobalState.no_randomize:
+			GlobalState.no_randomize = true
+			$QAInfo.show()
+		else:
+			GlobalState.no_randomize = false
+			$QAInfo.hide()
+		print("QA toggled")
 
 func _on_credits_pressed() -> void:
 	pass
@@ -37,13 +47,14 @@ func _on_quit_pressed() -> void:
 
 
 func _on_start_game_pressed() -> void:
+	start_game_button.get_node("Label").text = "Loading..."
+
 	# save the settings
 	var npc_count_int = int(npc_count_spinbox.value)
 	GlobalState.TOTAL_NPCS = npc_count_int
 	var selected_level_idx = level_dropdown.selected
 	GlobalState.SELECTED_LEVEL = level_dropdown.get_item_text(selected_level_idx)
 
-	start_game_button.text = "Loading..."
 	var main_node = main_scene.instantiate()
 	get_parent().add_child(main_node)
 	self.queue_free()

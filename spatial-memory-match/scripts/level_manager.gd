@@ -22,6 +22,8 @@ func _ready() -> void:
 	# When we play from the menu, total NPCs won't be -1
 	# TODO: We can make a list of configurable fields and a map where the value is the empty val
 	#		and do this more concisely
+	if GlobalState.no_randomize:
+		no_randomize = true
 	if GlobalState.TOTAL_NPCS != -1:
 		npc_count = GlobalState.TOTAL_NPCS
 	if GlobalState.SELECTED_LEVEL != "":

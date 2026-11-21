@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://i2qrbjr2gdx0"]
 
 [ext_resource type="Script" uid="uid://b8erbtsg68cjk" path="res://menus/start_menu.gd" id="1_1t8nw"]
-[ext_resource type="Texture2D" uid="uid://bl1r3armv0i2g" path="res://Screenshot 2026-11-17 at 7.22.42 AM.png" id="1_3kg5v"]
+[ext_resource type="Texture2D" uid="uid://bscjdodf0ee17" path="res://assets/ui/maskerade_bg_1.png" id="2_hys1b"]
+[ext_resource type="Texture2D" uid="uid://dpqs8nbw12ttx" path="res://assets/ui/menu_button_unpressed.png" id="3_hys1b"]
 [ext_resource type="Script" uid="uid://c10kdtjeytylx" path="res://menus/npc_count_spin_box.gd" id="3_w3tic"]
+[ext_resource type="Texture2D" uid="uid://557885j7wup2" path="res://assets/ui/menu_button_pressed.png" id="4_h6phu"]
+[ext_resource type="Texture2D" uid="uid://crlibfhba2p0r" path="res://assets/ui/menu_button_hover.png" id="5_yhcmu"]
+[ext_resource type="FontFile" uid="uid://1afhjmwpspl5" path="res://assets/ui/RANDOSHAPE.ttf" id="6_yhcmu"]
 
 [sub_resource type="Theme" id="Theme_hixdw"]
 default_font_size = 28
+
+[sub_resource type="Theme" id="Theme_h6phu"]
+default_font = ExtResource("6_yhcmu")
 
 [node name="StartMenu" type="Control" unique_id=153238511]
 layout_mode = 3
@@ -22,7 +29,23 @@ offset_left = -154.0
 offset_top = -83.0
 offset_right = 1272.0
 offset_bottom = 741.0
-texture = ExtResource("1_3kg5v")
+texture = ExtResource("2_hys1b")
+
+[node name="QAInfo" type="RichTextLabel" parent="." unique_id=1166338925]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_font_sizes/normal_font_size = 67
+text = "QA ACTIVE
+item order will remain
+the same"
+fit_content = true
+autowrap_mode = 0
 
 [node name="HomeStart" type="Control" parent="." unique_id=1384976429]
 anchors_preset = 0
@@ -33,9 +56,17 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_left = 34.0
 offset_top = 33.0
-offset_right = 399.0
+offset_right = 669.0
 offset_bottom = 105.0
-theme_override_font_sizes/normal_font_size = 52
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("6_yhcmu")
+theme_override_font_sizes/normal_font_size = 76
 text = "Mask-erade"
 fit_content = true
 
@@ -46,30 +77,130 @@ offset_top = 115.0
 offset_right = 264.0
 offset_bottom = 366.0
 
-[node name="Play" type="Button" parent="HomeStart/VBoxContainer" unique_id=850114048]
+[node name="Play" type="TextureButton" parent="HomeStart/VBoxContainer" unique_id=1467885356]
+texture_filter = 3
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
+texture_normal = ExtResource("3_hys1b")
+texture_pressed = ExtResource("4_h6phu")
+texture_hover = ExtResource("5_yhcmu")
+texture_focused = ExtResource("5_yhcmu")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HomeStart/VBoxContainer/Play" unique_id=1019361405]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h6phu")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Settings" type="Button" parent="HomeStart/VBoxContainer" unique_id=2043854285]
+[node name="Settings" type="TextureButton" parent="HomeStart/VBoxContainer" unique_id=1988496644]
+texture_filter = 3
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
+texture_normal = ExtResource("3_hys1b")
+texture_pressed = ExtResource("4_h6phu")
+texture_hover = ExtResource("5_yhcmu")
+texture_focused = ExtResource("5_yhcmu")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HomeStart/VBoxContainer/Settings" unique_id=565167068]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h6phu")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="How to Play" type="Button" parent="HomeStart/VBoxContainer" unique_id=970191339]
+[node name="How to Play" type="TextureButton" parent="HomeStart/VBoxContainer" unique_id=859321560]
+texture_filter = 3
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
+texture_normal = ExtResource("3_hys1b")
+texture_pressed = ExtResource("4_h6phu")
+texture_hover = ExtResource("5_yhcmu")
+texture_focused = ExtResource("5_yhcmu")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HomeStart/VBoxContainer/How to Play" unique_id=1872003420]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h6phu")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "How to Play"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Credits" type="Button" parent="HomeStart/VBoxContainer" unique_id=1894966874]
+[node name="Credits" type="TextureButton" parent="HomeStart/VBoxContainer" unique_id=407613152]
+texture_filter = 3
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
+texture_normal = ExtResource("3_hys1b")
+texture_pressed = ExtResource("4_h6phu")
+texture_hover = ExtResource("5_yhcmu")
+texture_focused = ExtResource("5_yhcmu")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HomeStart/VBoxContainer/Credits" unique_id=69632886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h6phu")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Quit Game" type="Button" parent="HomeStart/VBoxContainer" unique_id=1858353025]
+[node name="Quit Game" type="TextureButton" parent="HomeStart/VBoxContainer" unique_id=526685577]
+texture_filter = 3
 layout_mode = 2
 theme = SubResource("Theme_hixdw")
+texture_normal = ExtResource("3_hys1b")
+texture_pressed = ExtResource("4_h6phu")
+texture_hover = ExtResource("5_yhcmu")
+texture_focused = ExtResource("5_yhcmu")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="HomeStart/VBoxContainer/Quit Game" unique_id=1640246705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h6phu")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Quit Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameConfig" type="Control" parent="." unique_id=2105795899]
 visible = false
@@ -94,7 +225,15 @@ layout_mode = 2
 
 [node name="Title" type="RichTextLabel" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=1600514582]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 52
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("6_yhcmu")
+theme_override_font_sizes/normal_font_size = 76
 text = "Level Settings"
 fit_content = true
 autowrap_mode = 0
@@ -105,6 +244,15 @@ layout_mode = 2
 [node name="LevelText" type="RichTextLabel" parent="GameConfig/CenterContainer/VBoxContainer/Level" unique_id=1948629033]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("6_yhcmu")
+theme_override_font_sizes/normal_font_size = 36
 text = "Level"
 fit_content = true
 autowrap_mode = 0
@@ -118,6 +266,15 @@ layout_mode = 2
 [node name="NPCCountText" type="RichTextLabel" parent="GameConfig/CenterContainer/VBoxContainer/NPCCount" unique_id=1258986950]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("6_yhcmu")
+theme_override_font_sizes/normal_font_size = 36
 text = "Num of NPCs"
 fit_content = true
 autowrap_mode = 0
@@ -126,12 +283,33 @@ autowrap_mode = 0
 layout_mode = 2
 script = ExtResource("3_w3tic")
 
-[node name="Start Game" type="Button" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=1516305253]
+[node name="Start Game" type="TextureButton" parent="GameConfig/CenterContainer/VBoxContainer" unique_id=484221960]
+texture_filter = 3
 layout_mode = 2
+texture_normal = ExtResource("3_hys1b")
+texture_pressed = ExtResource("4_h6phu")
+texture_hover = ExtResource("5_yhcmu")
+texture_focused = ExtResource("5_yhcmu")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="GameConfig/CenterContainer/VBoxContainer/Start Game" unique_id=1053598165]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_h6phu")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Start Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="HomeStart/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="HomeStart/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="gui_input" from="HomeStart/VBoxContainer/How to Play" to="." method="_on_how_to_play_gui_input"]
 [connection signal="pressed" from="HomeStart/VBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="HomeStart/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="HomeStart/VBoxContainer/Quit Game" to="." method="_on_quit_pressed"]

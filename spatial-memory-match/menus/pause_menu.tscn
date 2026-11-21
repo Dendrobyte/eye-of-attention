@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://8m1ib2vweuxn"]
 
 [ext_resource type="Script" uid="uid://4v7k6oltm0vm" path="res://menus/pause_menu.gd" id="1_s0u37"]
+[ext_resource type="Texture2D" uid="uid://dpqs8nbw12ttx" path="res://assets/ui/menu_button_unpressed.png" id="2_qlf07"]
+[ext_resource type="Texture2D" uid="uid://557885j7wup2" path="res://assets/ui/menu_button_pressed.png" id="3_ybqm1"]
+[ext_resource type="Texture2D" uid="uid://crlibfhba2p0r" path="res://assets/ui/menu_button_hover.png" id="4_mtdpf"]
+[ext_resource type="FontFile" uid="uid://1afhjmwpspl5" path="res://assets/ui/RANDOSHAPE.ttf" id="5_ybqm1"]
+
+[sub_resource type="Theme" id="Theme_mtdpf"]
+default_font = ExtResource("5_ybqm1")
 
 [node name="PauseMenu" type="Control" unique_id=1740259336]
+texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,23 +34,69 @@ layout_mode = 2
 
 [node name="Title" type="RichTextLabel" parent="CenterContainer/VBoxContainer" unique_id=5744014]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 52
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("5_ybqm1")
+theme_override_font_sizes/normal_font_size = 76
 text = "GAME PAUSED"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Resume" type="Button" parent="CenterContainer/VBoxContainer" unique_id=135480145]
+[node name="Resume" type="TextureButton" parent="CenterContainer/VBoxContainer" unique_id=1964830049]
 layout_mode = 2
+texture_normal = ExtResource("2_qlf07")
+texture_pressed = ExtResource("3_ybqm1")
+texture_hover = ExtResource("4_mtdpf")
+texture_focused = ExtResource("4_mtdpf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Resume" unique_id=811661302]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mtdpf")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="To Menu" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1672317191]
 visible = false
 layout_mode = 2
 text = "To Menu (TODO)"
 
-[node name="Quit Game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1567920335]
+[node name="Quit Game" type="TextureButton" parent="CenterContainer/VBoxContainer" unique_id=1803142187]
 layout_mode = 2
+texture_normal = ExtResource("2_qlf07")
+texture_pressed = ExtResource("3_ybqm1")
+texture_hover = ExtResource("4_mtdpf")
+texture_focused = ExtResource("4_mtdpf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Quit Game" unique_id=1265681162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mtdpf")
+theme_override_colors/font_color = Color(0.21081409, 0.26974285, 0.41074365, 1)
+theme_override_colors/font_shadow_color = Color(0.9198313, 0.9198313, 0.9198313, 0.7176471)
+theme_override_font_sizes/font_size = 40
 text = "Quit Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed"]

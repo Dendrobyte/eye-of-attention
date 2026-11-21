@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c1vbuj8bh5s50" path="res://scripts/character_1p.gd" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://burwtgo5mraqd" path="res://assets/levels/prototype_map.gltf" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
+[ext_resource type="FontFile" uid="uid://1afhjmwpspl5" path="res://assets/ui/RANDOSHAPE.ttf" id="5_7mycd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vw27"]
 sky_top_color = Color(0.3616567, 0.62887424, 0.8810701, 1)
@@ -18,12 +19,6 @@ sky = SubResource("Sky_lquwl")
 ambient_light_source = 3
 ambient_light_color = Color(0.6543351, 0.8819266, 0.953373, 1)
 reflected_light_source = 2
-
-[sub_resource type="Theme" id="Theme_lquwl"]
-default_font_size = 32
-
-[sub_resource type="Theme" id="Theme_654gu"]
-default_font_size = 17
 
 [sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
 size = Vector3(1, 1.6678467, 1)
@@ -39,7 +34,6 @@ visible = false
 [node name="LevelManager" type="Node3D" parent="." unique_id=973793902]
 script = ExtResource("1_h2yge")
 level_scene_name = "first_floor"
-no_randomize = true
 npc_count = 3
 
 [node name="prototype_map" parent="LevelManager" unique_id=2083568902 instance=ExtResource("3_lquwl")]
@@ -73,7 +67,15 @@ size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 36)
 offset_transform_position_ratio = Vector2(0.05, 0)
-theme = SubResource("Theme_lquwl")
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("5_7mycd")
+theme_override_font_sizes/normal_font_size = 36
 text = "--:--"
 fit_content = true
 autowrap_mode = 0
@@ -81,7 +83,15 @@ autowrap_mode = 0
 [node name="Stats" type="RichTextLabel" parent="LevelManager/HUD/HBoxContainer" unique_id=976407652]
 visible = false
 layout_mode = 2
-theme = SubResource("Theme_654gu")
+theme_override_colors/default_color = Color(0.21176471, 0.27058825, 0.4117647, 1)
+theme_override_colors/font_outline_color = Color(0.9933718, 0.9933718, 0.9933718, 1)
+theme_override_colors/font_shadow_color = Color(0.16833037, 0.5030578, 0.82007504, 0.80784315)
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 11
+theme_override_fonts/normal_font = ExtResource("5_7mycd")
+theme_override_font_sizes/normal_font_size = 36
 text = "NPCS: 0/0 TODO"
 fit_content = true
 autowrap_mode = 0
