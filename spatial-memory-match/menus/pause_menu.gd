@@ -1,5 +1,7 @@
 extends Control
 
+@onready var music_player = get_parent().get_node("LevelManager/Music")
+
 func _ready() -> void:
 	hide()
 
@@ -17,10 +19,12 @@ func toggle_menu():
 	if in_menu:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		GlobalState.resume_game_stopwatch()
+		music_player.play()
 		hide()
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		GlobalState.pause_game_stopwatch()
+		music_player.stop()
 		show()
 	in_menu = !in_menu
 

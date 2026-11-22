@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://557885j7wup2" path="res://assets/ui/menu_button_pressed.png" id="4_h6phu"]
 [ext_resource type="Texture2D" uid="uid://crlibfhba2p0r" path="res://assets/ui/menu_button_hover.png" id="5_yhcmu"]
 [ext_resource type="FontFile" uid="uid://1afhjmwpspl5" path="res://assets/ui/RANDOSHAPE.ttf" id="6_yhcmu"]
+[ext_resource type="AudioStream" uid="uid://b4sqvkacmw8tr" path="res://assets/sound/Menu.wav" id="8_ostuc"]
 
 [sub_resource type="Theme" id="Theme_hixdw"]
 default_font_size = 28
@@ -306,6 +307,11 @@ theme_override_font_sizes/font_size = 40
 text = "Start Game"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=122405856]
+stream = ExtResource("8_ostuc")
+volume_db = -13.667
+autoplay = true
 
 [connection signal="pressed" from="HomeStart/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="HomeStart/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

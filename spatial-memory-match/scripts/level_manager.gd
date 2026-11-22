@@ -8,6 +8,7 @@ var NPC_MODEL = preload("res://entity_scenes/char_base_scene.tscn")
 var NPC_SCRIPT = preload("res://scripts/npc_behavior.gd")
 var ITEM_SCENE = preload("res://assets/items.gltf")
 var ITEM_SCRIPT = preload("res://scripts/item_behavior.gd")
+var OUTLINE_SHADER = preload("res://assets/shaders/outline.gdshader")
 
 # Debug Options
 @export_enum("prototype_map", "tutorial", "first_floor") var level_scene_name: String
@@ -51,7 +52,8 @@ func _ready() -> void:
 			NPC_TRANSFORMS.append({"position": new_npc_position, "rotation": child.rotation})
 			child.queue_free()
 		if child_name.contains("ITEM_POS"):
-			ITEM_POSITIONS.append(child.position)
+			var new_item_pos = snap_down_pos(child.position, 0)
+			ITEM_POSITIONS.append(new_item_pos)
 			child.queue_free()
 		if child_name == "PLAYER_START_POS":
 			GlobalState.set_start_pos(child.position)
@@ -85,6 +87,7 @@ func _ready() -> void:
 		var item_node: Node = item_nodes[idx]
 		item_node.position = item_pos
 		item_node.set_script(ITEM_SCRIPT)
+		apply_shaders_to_item(item_node) # could technically have this as a function on there too
 		item_parent.add_child(item_node)
 		used_item_names.append(item_node.name)
 		GlobalState.add_item_node_to_map(item_node)
@@ -109,6 +112,7 @@ func _ready() -> void:
 	
 	GlobalState.level_manager = self
 	GlobalState.set_total_npcs(npc_count) # menu -> level manager -> state
+	$Music.play()
 
 
 # Keeping it here feels fine... but for now
@@ -133,7 +137,7 @@ var ray_offset = {
 }
 func snap_down_pos(node_position, y_offset):
 	var space_state = get_world_3d().direct_space_state
-	var ray_start = Vector3(node_position.x + ray_offset.x, node_position.y + 5, node_position.z + ray_offset.z) # Start above the player?
+	var ray_start = Vector3(node_position.x + ray_offset.x, node_position.y + 1, node_position.z + ray_offset.z) # Start above the player?
 	var ray_end = Vector3(node_position.x + ray_offset.x, node_position.y - 10, node_position.z + ray_offset.z) # I don't think we need to go too far down?
 	var query = PhysicsRayQueryParameters3D.create(ray_start, ray_end)
 	query.exclude = [self]
@@ -151,3 +155,9 @@ func enable_vertex_colors(env_item_node):
 		var material = env_item_node.get_active_material(0)
 		if material is BaseMaterial3D:
 			material.vertex_color_use_as_albedo = true
+
+func apply_shaders_to_item(item_node: MeshInstance3D):
+	# outline shader add as new material
+	var outline_mat = ShaderMaterial.new()
+	outline_mat.shader = OUTLINE_SHADER
+	item_node.material_overlay = outline_mat

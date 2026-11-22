@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://burwtgo5mraqd" path="res://assets/levels/prototype_map.gltf" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cg1ei5tbgw5j7" path="res://hud_behavior.gd" id="4_lquwl"]
 [ext_resource type="FontFile" uid="uid://1afhjmwpspl5" path="res://assets/ui/RANDOSHAPE.ttf" id="5_7mycd"]
+[ext_resource type="AudioStream" uid="uid://b5i8i7ykwicqq" path="res://assets/sound/Game.wav" id="6_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vw27"]
 sky_top_color = Color(0.3616567, 0.62887424, 0.8810701, 1)
@@ -96,6 +97,10 @@ text = "NPCS: 0/0 TODO"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="LevelManager" unique_id=1794536164]
+stream = ExtResource("6_272bh")
+volume_db = -24.667
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1739137916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.15975, 2.207295, 4.523862)

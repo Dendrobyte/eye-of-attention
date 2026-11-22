@@ -93,3 +93,22 @@ JUMP={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+
+[shader_globals]
+
+specular_smoothness={
+"type": "float",
+"value": 0.05
+}
+fresnel_smoothness={
+"type": "float",
+"value": 0.05
+}
+outline_width={
+"type": "float",
+"value": 8.0
+}
+outline_color={
+"type": "color",
+"value": Color(0, 0, 0, 1)
+}
