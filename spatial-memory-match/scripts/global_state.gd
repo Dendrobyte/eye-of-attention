@@ -74,6 +74,7 @@ var TIME_ELAPSED = 0.0
 func start_game_stopwatch():
 	STOPWATCH_STARTED = true
 	STOPWATCH_RUNNING = true
+	GlobalState.TIME_ELAPSED = 0.0
 	print("stopwatch started")
 
 # They won't be able to walk back through a level, so not bothering with the area that triggers start
