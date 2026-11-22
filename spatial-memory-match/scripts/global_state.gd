@@ -94,7 +94,7 @@ func show_time_elapsed():
 	var seconds_and_ms = str(TIME_ELAPSED).pad_decimals(2).replace(".", ":").split(":")
 	var seconds = int(seconds_and_ms[0])
 	var ms = int(seconds_and_ms[1])
-	var minutes = int(seconds / 60)
+	var minutes = seconds / 60
 	var remaining_seconds = seconds % 60
 	if ms <= 9:
 		ms = "0" + str(ms) # lol
